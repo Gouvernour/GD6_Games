@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameGrid : MonoBehaviour
 {
+    [SerializeField] GameObject LayoutGroup;
+    [SerializeField] GameObject DefaultObject;
+    [SerializeField] int worldSizeX, worldSizeY;
     [System.Serializable]
     public enum objectType
     {
@@ -17,20 +20,38 @@ public class GameGrid : MonoBehaviour
         public objectType type;
         public int blockLife;
         public GameObject objRef;
-        int posY;
-        int posX;
+        public int posY;
+        public int posX;
+        public Sprite sprite;
     }
-    public GridLocation[][] coordinate;
     public List<GridLocation> gridObject;
     void Start()
     {
-        
+        for(int i = 0; i < worldSizeX; i++)
+        {
+            for(int j = 0; j < worldSizeY; j++)
+            {
+                gridObject.Add(new GridLocation());
+                GameObject obj = gridObject[i + j * (i + 1)].objRef;
+                obj = GameObject.Instantiate(DefaultObject);
+                //obj.transform.parent = LayoutGroup.transform;
+                //obj.name = gridObject.Count.ToString();
+            }
+
+        }
+        GameObject Obj = gridObject[worldSizeX / 2].objRef;
+        Obj = DefaultObject;
     }
 
     
     void Update()
     {
         
+    }
+
+    void InitWorld()
+    {
+
     }
 
     IEnumerator Updateworld()
