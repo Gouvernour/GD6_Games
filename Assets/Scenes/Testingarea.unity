@@ -327,11 +327,15 @@ MonoBehaviour:
   worldSizeX: 0
   worldSizeY: 0
   gridObjects: []
-  DirtBlock: {fileID: 0}
-  SteelBlock: {fileID: 0}
+  DirtBlockPlayer: {fileID: 0}
+  DirtBlockEnemy: {fileID: 0}
+  SteelBlockPlayer: {fileID: 0}
+  SteelBlockEnemy: {fileID: 0}
   MinerDig: {fileID: 0}
   MinerClimb: {fileID: 0}
-  Enemy: {fileID: 0}
+  FlyEnemy: {fileID: 0}
+  LandEnemy: {fileID: 0}
+  BothEnemy: {fileID: 0}
   initialChance: 0
   EnemyChance: 0
   ChanceMultiplier: 0
@@ -339,6 +343,8 @@ MonoBehaviour:
   ActiveEnemies: 0
   MaxMetalDirt: 0
   MetalSpawnChance: 0
+  MaxMetalSpawnChance: 70
+  MetalSpawnMultiplier: 0
 --- !u!1001 &3235306224413864152
 PrefabInstance:
   m_ObjectHideFlags: 0

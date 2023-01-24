@@ -33,6 +33,7 @@ public class GameGrid : MonoBehaviour
     [SerializeField] GameObject EmptyObject;
     [SerializeField] int worldSizeX, worldSizeY;
     [SerializeField] List<GridLocation> gridObjects;
+
     [Header("Sprites")]
     [SerializeField] Sprite DirtBlockPlayer;
     [SerializeField] Sprite DirtBlockEnemy;
@@ -40,7 +41,9 @@ public class GameGrid : MonoBehaviour
     [SerializeField] Sprite SteelBlockEnemy;
     [SerializeField] Sprite MinerDig;
     [SerializeField] Sprite MinerClimb;
-    [SerializeField] Sprite Enemy;
+    [SerializeField] Sprite FlyEnemy;
+    [SerializeField] Sprite LandEnemy;
+    [SerializeField] Sprite BothEnemy;
 
     [Header("Enemies")]
     [SerializeField, Tooltip("Percentage of initial chance to spawn enemies")] float initialChance;
@@ -53,7 +56,9 @@ public class GameGrid : MonoBehaviour
     [SerializeField] int MaxMetalDirt;
     int spawnedMetal = 0;
     [SerializeField] float MetalSpawnChance;
+    [SerializeField] float MaxMetalSpawnChance = 70;
     [SerializeField] float MetalSpawnMultiplier;
+    bool SpawnSteel = false;
 
     void Start()
     {
@@ -90,10 +95,16 @@ public class GameGrid : MonoBehaviour
                     {
                         obj.blockLife = 2;
                         obj.objRef.GetComponent<Image>().sprite = DirtBlockPlayer;
+                        obj.objRef.GetComponent<Image>().preserveAspect = true;
                         obj.type = objectType.Earth;
-                    }else
+                    }else if(i > 0 && i % 2 != 0 && j % 2 != 0)
                     {
-                        obj.objRef.GetComponentInParent<Image>().enabled = false;
+                        obj.objRef.GetComponent<Image>().sprite = DirtBlockEnemy;
+                        obj.objRef.GetComponent<Image>().preserveAspect = true;
+                    }
+                    else
+                    {
+                        obj.objRef.GetComponent<Image>().enabled = false;
                     }
                 }
             }
@@ -168,24 +179,24 @@ public class GameGrid : MonoBehaviour
             int objectCheckIndex = index + worldSizeX;
             int PlayerX = Player.posX;
             GridLocation SwapObject;
-            if (swapIndex !> 127)
-            {
-                Debug.Log("Create new Row");
-                NewRow();
-                swapIndex -= 32;
-                index -= 32;
-                SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
-
-            }
-            else
-            {
-                SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
-
-            }
             GridLocation Dirt = gridObjects.Find(x => x.objRef.transform == transform.GetChild(objectCheckIndex));
 
             if(Dirt.type == objectType.Ladder)
             {
+                if (swapIndex! > 127)
+                {
+                    Debug.Log("Create new Row");
+                    NewRow();
+                    swapIndex -= 32;
+                    index -= 32;
+                    SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
+
+                }
+                else
+                {
+                    SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
+
+                }
                 Player.objRef.transform.SetSiblingIndex(swapIndex);
                 int swapX = SwapObject.posX;
                 Player.posX = swapX;
@@ -201,6 +212,9 @@ public class GameGrid : MonoBehaviour
                 {
                     Dirt.type = objectType.Ladder;
                     Dirt.objRef.GetComponentInParent<Image>().enabled = false;
+                    GridLocation ConnectedDirt = gridObjects.Find(x => x.objRef.transform == transform.GetChild(objectCheckIndex + 1));
+                    ConnectedDirt.type = objectType.Ladder;
+                    ConnectedDirt.objRef.GetComponentInParent<Image>().enabled = false;
                 }
             }
 
@@ -263,12 +277,35 @@ public class GameGrid : MonoBehaviour
                     if (i % 2 == 0)
                     {
                         obj.blockLife = 2;
-                        obj.objRef.GetComponent<Image>().sprite = CreateMetal() ? SteelBlockPlayer : DirtBlockPlayer;
-                        obj.type = objectType.Earth;
+                        SpawnSteel = CreateMetal();
+                        if(SpawnSteel)
+                        {
+                            obj.type = objectType.Metal;
+                            obj.objRef.GetComponent<Image>().sprite = SteelBlockPlayer;
+                            obj.objRef.GetComponent<Image>().preserveAspect = true;
+                        }
+                        else
+                        {
+                            obj.type = objectType.Earth;
+                            obj.objRef.GetComponent<Image>().sprite = DirtBlockPlayer;
+                            obj.objRef.GetComponent<Image>().preserveAspect = true;
+                        }
+
                     }else if(i % 2 != 0)
                     {
-                        obj.objRef.GetComponent<Image>().sprite = CreateMetal() ? SteelBlockEnemy : DirtBlockEnemy;
-                        obj.type = objectType.Earth;
+                        if (SpawnSteel)
+                        {
+                            obj.type = objectType.Metal;
+                            obj.objRef.GetComponent<Image>().sprite = SteelBlockEnemy;
+                            obj.objRef.GetComponent<Image>().preserveAspect = true;
+                            SpawnSteel = false;
+                        }
+                        else
+                        {
+                            obj.type = objectType.Earth;
+                            obj.objRef.GetComponent<Image>().sprite = DirtBlockEnemy;
+                            obj.objRef.GetComponent<Image>().preserveAspect = true;
+                        }
                     }
 
                 }
@@ -278,11 +315,15 @@ public class GameGrid : MonoBehaviour
                 }
             }
         }
+        spawnedMetal = 0;
+        MetalSpawnChance *= MetalSpawnMultiplier;
+        if(MetalSpawnChance > MaxMetalSpawnChance)
+            MetalSpawnChance = MaxMetalSpawnChance;
     }
 
     bool CreateMetal()
     {
-        if(Random.Range(0, 100) + MetalSpawnChance >= 100f && MaxMetalDirt != spawnedMetal)
+        if(Random.Range(0, 100) + MetalSpawnChance >= 100f && MaxMetalDirt > spawnedMetal)
         {
             spawnedMetal++;
             return true;
