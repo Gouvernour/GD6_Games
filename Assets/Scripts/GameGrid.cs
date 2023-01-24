@@ -31,7 +31,6 @@ public class GameGrid : MonoBehaviour
     [SerializeField] int worldSizeX, worldSizeY;
     
     public List<GridLocation> gridObjects;
-    GridLocation player;
     void Start()
     {
         for(int i = 0; i < worldSizeY; i++)
@@ -40,30 +39,30 @@ public class GameGrid : MonoBehaviour
             {
                 if(i == 0 && j == worldSizeX/2)
                 {
+                    Debug.Log("Half World X = " + j);
                     gridObjects.Add(new GridLocation());
-                    player = gridObjects[i + j + (i * worldSizeX)];
-                    Debug.Log(gridObjects.Count);
+                    //Debug.Log(gridObjects.Count);
                     //player.objRef.transform.SetParent(LayoutGroup.transform);
                     //player.objRef.name = "Player";
                     //player.posX = j;
                     //player.posY = i;
                     //player.type = objectType.Player;
-                    gridObjects[i + j + (i * worldSizeX)].objRef = GameObject.Instantiate(PlayerObject);
-                    gridObjects[i + j + (i * worldSizeX)].objRef.transform.SetParent(LayoutGroup.transform, false);
-                    gridObjects[i + j + (i * worldSizeX)].objRef.name = "Player";
-                    gridObjects[i + j + (i * worldSizeX)].posX = j;
-                    gridObjects[i + j + (i * worldSizeX)].posY = i;
-                    gridObjects[i + j + (i * worldSizeX)].name = "Player";
-                    gridObjects[i + j + (i * worldSizeX)].type = objectType.Player;
+                    gridObjects[j + (i * worldSizeX)].objRef = GameObject.Instantiate(PlayerObject);
+                    gridObjects[j + (i * worldSizeX)].objRef.transform.SetParent(LayoutGroup.transform, false);
+                    gridObjects[j + (i * worldSizeX)].objRef.name = "Player";
+                    gridObjects[j + (i * worldSizeX)].posX = j + 1;
+                    gridObjects[j + (i * worldSizeX)].posY = i;
+                    gridObjects[j + (i * worldSizeX)].name = "Player";
+                    gridObjects[j + (i * worldSizeX)].type = objectType.Player;
                 }
                 else
                 {
                     gridObjects.Add(new GridLocation());
-                    GridLocation obj = gridObjects[i + j + (i * worldSizeX)];
+                    GridLocation obj = gridObjects[j + (i * worldSizeX)];
                     obj.objRef = GameObject.Instantiate(EmptyObject);
                     obj.objRef.transform.SetParent(LayoutGroup.transform);
                     obj.objRef.name = gridObjects.Count.ToString();
-                    gridObjects[i + j + (i * worldSizeX)].name = gridObjects.Count.ToString();
+                    gridObjects[j + (i * worldSizeX)].name = gridObjects.Count.ToString();
                     obj.type = objectType.Ladder;
                     obj.posX = j;
                     obj.posY = i;
@@ -78,30 +77,59 @@ public class GameGrid : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            GridLocation SwapObject = gridObjects[2];   //If object is not found player is used as safety net
-            int PlayerIndex = player.objRef.transform.GetSiblingIndex();
-            int PlayerX = player.posX;
+            Debug.Log(gridObjects.Count.ToString());
+            GridLocation PLAYER = gridObjects.Find(x => x.type == objectType.Player);
+            int PlayerIndex = PLAYER.objRef.transform.GetSiblingIndex();
+            int PlayerX = PLAYER.posX;
+            int PlayerY = PLAYER.posY;
             int SwapIndex;
-            if (PlayerIndex < 1)
+            int SwapX;
+            if (PlayerX < 1)
             {
-                SwapIndex = worldSizeX;
+                SwapX = worldSizeX;
+                SwapIndex = PlayerIndex + worldSizeX - 2;
             }
-            else SwapIndex = PlayerIndex - 2;
-            foreach (GridLocation gridPiece in gridObjects)
+            else
             {
-                if (gridPiece.posX == SwapIndex)
-                {
-                    SwapObject = gridPiece;
-                    break;
-                }
+                SwapX = PlayerX - 2;
+                SwapIndex = PlayerIndex - 2;
             }
-            int SwapX = SwapObject.posX;
-            player.objRef.transform.SetSiblingIndex(SwapIndex);
-            player.posX = SwapX;
-            SwapObject.objRef.transform.SetSiblingIndex(PlayerIndex);
-            SwapObject.posX = PlayerX;
-            SwapObject.objRef.name = "Switched";
 
+            GridLocation SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(SwapIndex));
+
+            PLAYER.objRef.transform.SetSiblingIndex(SwapIndex);
+            int swapX = SwapObject.posX;
+            PLAYER.posX = swapX;
+            SwapObject.posX = PlayerX;
+            SwapObject.objRef.transform.SetSiblingIndex(PlayerIndex);
+        }else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            //Debug.Log(gridObjects.Count.ToString());
+            GridLocation PLAYER = gridObjects.Find(x => x.type == objectType.Player);
+            int PlayerIndex = PLAYER.objRef.transform.GetSiblingIndex();
+            int PlayerX = PLAYER.posX;
+            Debug.Log(PlayerX);
+            int PlayerY = PLAYER.posY;
+            int SwapIndex;
+            int SwapX;
+            if (PlayerX > 12)
+            {
+                SwapX = 0;
+                SwapIndex = PlayerIndex - 14;
+            }
+            else
+            {
+                SwapX = PlayerX + 2;
+                SwapIndex = PlayerIndex + 2;
+            }
+
+            GridLocation SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(SwapIndex));
+
+            PLAYER.objRef.transform.SetSiblingIndex(SwapIndex);
+            int swapX = SwapObject.posX;
+            PLAYER.posX = swapX;
+            SwapObject.posX = PlayerX;
+            SwapObject.objRef.transform.SetSiblingIndex(PlayerIndex);
         }
     }
 
