@@ -119,11 +119,19 @@ MonoBehaviour:
   EmptyObject: {fileID: 4041519255175255379, guid: 78a01b99ba8c6f743872b341cc6c2d62, type: 3}
   worldSizeX: 16
   worldSizeY: 8
+  gridObjects: []
   DirtBlock: {fileID: 21300000, guid: d0c848c601a95c342b41e9309ad30aae, type: 3}
   SteelBlock: {fileID: 21300000, guid: 4ba23044adb13c1489ad0aa9dda8ef6f, type: 3}
   MinerDig: {fileID: 21300000, guid: 6ca6fa656fecfea4eb8c9a79f57f5ae4, type: 3}
   MinerClimb: {fileID: 21300000, guid: 6f5230321a35cfd4fb149ee53e13ae19, type: 3}
-  gridObjects: []
+  Enemy: {fileID: 0}
+  initialChance: 1
+  EnemyChance: 1
+  ChanceMultiplier: 1.2
+  MaxActiveEnemies: 8
+  ActiveEnemies: 0
+  MaxMetalDirt: 7
+  MetalSpawnChance: 1
 --- !u!1 &3235306225101017723
 GameObject:
   m_ObjectHideFlags: 0

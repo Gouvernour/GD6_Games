@@ -25,16 +25,36 @@ public class GridLocation
 
 public class GameGrid : MonoBehaviour
 {
+    GridLocation Player;    //Reference for player
+
+    [Header("Grid")]
     [SerializeField] GameObject LayoutGroup;
     [SerializeField] GameObject PlayerObject;
     [SerializeField] GameObject EmptyObject;
     [SerializeField] int worldSizeX, worldSizeY;
-    [SerializeField] Sprite DirtBlock;
-    [SerializeField] Sprite SteelBlock;
+    [SerializeField] List<GridLocation> gridObjects;
+    [Header("Sprites")]
+    [SerializeField] Sprite DirtBlockPlayer;
+    [SerializeField] Sprite DirtBlockEnemy;
+    [SerializeField] Sprite SteelBlockPlayer;
+    [SerializeField] Sprite SteelBlockEnemy;
     [SerializeField] Sprite MinerDig;
     [SerializeField] Sprite MinerClimb;
-    GridLocation Player;
-    public List<GridLocation> gridObjects;
+    [SerializeField] Sprite Enemy;
+
+    [Header("Enemies")]
+    [SerializeField, Tooltip("Percentage of initial chance to spawn enemies")] float initialChance;
+    [SerializeField, Tooltip("Current chance of spawning new enemy")] float EnemyChance;
+    [SerializeField, Tooltip("Multiplier to increase spawn chance per new level")] float ChanceMultiplier;
+    [SerializeField, Tooltip("Max Allowed enemies")] int MaxActiveEnemies;
+    [SerializeField, Tooltip("Currently active enemies on screen")] int ActiveEnemies;
+
+    [Header("Non Diggable dirt")]
+    [SerializeField] int MaxMetalDirt;
+    int spawnedMetal = 0;
+    [SerializeField] float MetalSpawnChance;
+    [SerializeField] float MetalSpawnMultiplier;
+
     void Start()
     {
         for(int i = 0; i < worldSizeY; i++)
@@ -69,7 +89,7 @@ public class GameGrid : MonoBehaviour
                     if(i > 0 && i%2!=0 && j%2==0)
                     {
                         obj.blockLife = 2;
-                        obj.objRef.GetComponent<Image>().sprite = DirtBlock;
+                        obj.objRef.GetComponent<Image>().sprite = DirtBlockPlayer;
                         obj.type = objectType.Earth;
                     }else
                     {
@@ -238,11 +258,19 @@ public class GameGrid : MonoBehaviour
                 obj.type = objectType.Ladder;
                 obj.posX = i;
                 obj.posY = j + 6;
-                if (j > 0 && j % 2 != 0 && i % 2 == 0)
+                if(j % 2 != 0)
                 {
-                    obj.blockLife = 2;
-                    obj.objRef.GetComponent<Image>().sprite = DirtBlock;
-                    obj.type = objectType.Earth;
+                    if (i % 2 == 0)
+                    {
+                        obj.blockLife = 2;
+                        obj.objRef.GetComponent<Image>().sprite = CreateMetal() ? SteelBlockPlayer : DirtBlockPlayer;
+                        obj.type = objectType.Earth;
+                    }else if(i % 2 != 0)
+                    {
+                        obj.objRef.GetComponent<Image>().sprite = CreateMetal() ? SteelBlockEnemy : DirtBlockEnemy;
+                        obj.type = objectType.Earth;
+                    }
+
                 }
                 else
                 {
@@ -250,6 +278,16 @@ public class GameGrid : MonoBehaviour
                 }
             }
         }
+    }
+
+    bool CreateMetal()
+    {
+        if(Random.Range(0, 100) + MetalSpawnChance >= 100f && MaxMetalDirt != spawnedMetal)
+        {
+            spawnedMetal++;
+            return true;
+        }
+        return false;
     }
 
     IEnumerator Updateworld()

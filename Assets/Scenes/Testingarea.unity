@@ -326,11 +326,19 @@ MonoBehaviour:
   EmptyObject: {fileID: 0}
   worldSizeX: 0
   worldSizeY: 0
+  gridObjects: []
   DirtBlock: {fileID: 0}
   SteelBlock: {fileID: 0}
   MinerDig: {fileID: 0}
   MinerClimb: {fileID: 0}
-  gridObjects: []
+  Enemy: {fileID: 0}
+  initialChance: 0
+  EnemyChance: 0
+  ChanceMultiplier: 0
+  MaxActiveEnemies: 0
+  ActiveEnemies: 0
+  MaxMetalDirt: 0
+  MetalSpawnChance: 0
 --- !u!1001 &3235306224413864152
 PrefabInstance:
   m_ObjectHideFlags: 0
