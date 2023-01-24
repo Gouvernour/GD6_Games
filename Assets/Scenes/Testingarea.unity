@@ -348,6 +348,10 @@ MonoBehaviour:
   EmptyObject: {fileID: 4041519255175255379, guid: 78a01b99ba8c6f743872b341cc6c2d62, type: 3}
   worldSizeX: 16
   worldSizeY: 8
+  DirtBlock: {fileID: 21300000, guid: d0c848c601a95c342b41e9309ad30aae, type: 3}
+  SteelBlock: {fileID: 21300000, guid: 4ba23044adb13c1489ad0aa9dda8ef6f, type: 3}
+  MinerDig: {fileID: 21300000, guid: 6ca6fa656fecfea4eb8c9a79f57f5ae4, type: 3}
+  MinerClimb: {fileID: 21300000, guid: 6f5230321a35cfd4fb149ee53e13ae19, type: 3}
   gridObjects: []
 --- !u!114 &1847099134
 MonoBehaviour:
@@ -547,4 +551,8 @@ MonoBehaviour:
   EmptyObject: {fileID: 0}
   worldSizeX: 0
   worldSizeY: 0
+  DirtBlock: {fileID: 0}
+  SteelBlock: {fileID: 0}
+  MinerDig: {fileID: 0}
+  MinerClimb: {fileID: 0}
   gridObjects: []

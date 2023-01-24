@@ -20,7 +20,7 @@ public class GridLocation
     public GameObject objRef;
     public int posY;
     public int posX;
-    public Image sprite;
+    public Sprite sprite;
 }
 
 public class GameGrid : MonoBehaviour
@@ -29,6 +29,10 @@ public class GameGrid : MonoBehaviour
     [SerializeField] GameObject PlayerObject;
     [SerializeField] GameObject EmptyObject;
     [SerializeField] int worldSizeX, worldSizeY;
+    [SerializeField] Sprite DirtBlock;
+    [SerializeField] Sprite SteelBlock;
+    [SerializeField] Sprite MinerDig;
+    [SerializeField] Sprite MinerClimb;
     
     public List<GridLocation> gridObjects;
     void Start()
@@ -66,6 +70,14 @@ public class GameGrid : MonoBehaviour
                     obj.type = objectType.Ladder;
                     obj.posX = j;
                     obj.posY = i;
+                    if(i > 0 && i%2!=0)
+                    {
+                        gridObjects[j + (i * worldSizeX)].blockLife = 2;
+                        gridObjects[j + (i * worldSizeX)].objRef.GetComponent<Image>().sprite = DirtBlock;
+                    }else
+                    {
+                        obj.objRef.GetComponentInParent<Image>().enabled = false;
+                    }
                 }
             }
 
