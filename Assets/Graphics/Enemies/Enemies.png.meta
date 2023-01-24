@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ba23044adb13c1489ad0aa9dda8ef6f
+guid: 425b068ed4c157f4dbb7b011aff72782
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Steel protection_0
+      name: Enemies_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 364.5
-        height: 52
+        y: 116
+        width: 201
+        height: 206
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 276850c55166c3347b65ab25e1a4297e
-      internalID: -1424720886
+      spriteID: 9ab008374420b3e41a9dc0e7559a6a60
+      internalID: -1140739239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Steel protection_1
+      name: Enemies_3
       rect:
         serializedVersion: 2
-        x: 364
+        x: 0
         y: 0
-        width: 364.5
-        height: 52
+        width: 201
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 515fcfa9ec700a54cbf367b688fd7647
-      internalID: 1001289515
+      spriteID: de304a90728acef46b0144b19687a3b4
+      internalID: -1961876599
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Steel protection_1: 1001289515
-      Steel protection_0: -1424720886
+      Enemies_2: 2048131037
+      Enemies_3: -1961876599
+      Enemies_1: -1140739239
+      Enemies_0: 1634545761
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
