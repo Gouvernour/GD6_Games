@@ -33,7 +33,7 @@ public class GameGrid : MonoBehaviour
     [SerializeField] Sprite SteelBlock;
     [SerializeField] Sprite MinerDig;
     [SerializeField] Sprite MinerClimb;
-    
+    GridLocation Player;
     public List<GridLocation> gridObjects;
     void Start()
     {
@@ -45,19 +45,15 @@ public class GameGrid : MonoBehaviour
                 {
                     Debug.Log("Half World X = " + j);
                     gridObjects.Add(new GridLocation());
-                    //Debug.Log(gridObjects.Count);
-                    //player.objRef.transform.SetParent(LayoutGroup.transform);
-                    //player.objRef.name = "Player";
-                    //player.posX = j;
-                    //player.posY = i;
-                    //player.type = objectType.Player;
-                    gridObjects[j + (i * worldSizeX)].objRef = GameObject.Instantiate(PlayerObject);
-                    gridObjects[j + (i * worldSizeX)].objRef.transform.SetParent(LayoutGroup.transform, false);
-                    gridObjects[j + (i * worldSizeX)].objRef.name = "Player";
-                    gridObjects[j + (i * worldSizeX)].posX = j + 1;
-                    gridObjects[j + (i * worldSizeX)].posY = i;
-                    gridObjects[j + (i * worldSizeX)].name = "Player";
-                    gridObjects[j + (i * worldSizeX)].type = objectType.Player;
+                    GridLocation obj = gridObjects[j + (i * worldSizeX)];
+                    obj.objRef = GameObject.Instantiate(PlayerObject);
+                    obj.objRef.transform.SetParent(LayoutGroup.transform, false);
+                    obj.objRef.name = "Player";
+                    obj.posX = j + 1;
+                    obj.posY = i;
+                    obj.name = "Player";
+                    obj.type = objectType.Player;
+                    Player = obj;
                 }
                 else
                 {
@@ -66,14 +62,15 @@ public class GameGrid : MonoBehaviour
                     obj.objRef = GameObject.Instantiate(EmptyObject);
                     obj.objRef.transform.SetParent(LayoutGroup.transform);
                     obj.objRef.name = gridObjects.Count.ToString();
-                    gridObjects[j + (i * worldSizeX)].name = gridObjects.Count.ToString();
+                    obj.name = gridObjects.Count.ToString();
                     obj.type = objectType.Ladder;
                     obj.posX = j;
                     obj.posY = i;
-                    if(i > 0 && i%2!=0)
+                    if(i > 0 && i%2!=0 && j%2==0)
                     {
-                        gridObjects[j + (i * worldSizeX)].blockLife = 2;
-                        gridObjects[j + (i * worldSizeX)].objRef.GetComponent<Image>().sprite = DirtBlock;
+                        obj.blockLife = 2;
+                        obj.objRef.GetComponent<Image>().sprite = DirtBlock;
+                        obj.type = objectType.Earth;
                     }else
                     {
                         obj.objRef.GetComponentInParent<Image>().enabled = false;
@@ -114,7 +111,8 @@ public class GameGrid : MonoBehaviour
             PLAYER.posX = swapX;
             SwapObject.posX = PlayerX;
             SwapObject.objRef.transform.SetSiblingIndex(PlayerIndex);
-        }else if (Input.GetKeyDown(KeyCode.RightArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             //Debug.Log(gridObjects.Count.ToString());
             GridLocation PLAYER = gridObjects.Find(x => x.type == objectType.Player);
@@ -143,16 +141,115 @@ public class GameGrid : MonoBehaviour
             SwapObject.posX = PlayerX;
             SwapObject.objRef.transform.SetSiblingIndex(PlayerIndex);
         }
+        else if (Input.GetKeyDown (KeyCode.DownArrow))
+        {
+            int index = Player.objRef.transform.GetSiblingIndex();
+            int swapIndex = index + worldSizeX * 2;
+            int objectCheckIndex = index + worldSizeX;
+            int PlayerX = Player.posX;
+            GridLocation SwapObject;
+            if (swapIndex !> 127)
+            {
+                Debug.Log("Create new Row");
+                NewRow();
+                swapIndex -= 32;
+                index -= 32;
+                SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
+
+            }
+            else
+            {
+                SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
+
+            }
+            GridLocation Dirt = gridObjects.Find(x => x.objRef.transform == transform.GetChild(objectCheckIndex));
+
+            if(Dirt.type == objectType.Ladder)
+            {
+                Player.objRef.transform.SetSiblingIndex(swapIndex);
+                int swapX = SwapObject.posX;
+                Player.posX = swapX;
+                Player.posY += 2;
+                SwapObject.posX = PlayerX;
+                SwapObject.posY -= 2;
+                SwapObject.objRef.transform.SetSiblingIndex(index);
+            }
+            else if(Dirt.type == objectType.Earth)
+            {
+                Dirt.blockLife--;
+                if(Dirt.blockLife <= 0)
+                {
+                    Dirt.type = objectType.Ladder;
+                    Dirt.objRef.GetComponentInParent<Image>().enabled = false;
+                }
+            }
+
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (Player.posY == 0)
+                return;
+            else
+            {
+                int index = Player.objRef.transform.GetSiblingIndex();
+                int swapIndex = index - worldSizeX * 2;
+                int objectCheckIndex = index - worldSizeX;
+                int PlayerX = Player.posX;
+                GridLocation SwapObject;
+                SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
+                GridLocation Dirt = gridObjects.Find(x => x.objRef.transform == transform.GetChild(objectCheckIndex));
+
+                if (Dirt.type == objectType.Ladder)
+                {
+                    Player.objRef.transform.SetSiblingIndex(swapIndex);
+                    int swapX = SwapObject.posX;
+                    Player.posX = swapX;
+                    SwapObject.posX = PlayerX;
+                    SwapObject.objRef.transform.SetSiblingIndex(index);
+                }
+                else if (Dirt.type == objectType.Earth)
+                {
+                    return;
+                }
+            }
+        }
     }
 
-    void CheckMove()
+    void NewRow()
     {
-
-    }
-
-    void InitWorld()
-    {
-
+        foreach (GridLocation gridPiece in gridObjects)
+        {
+            gridPiece.posY -= 2;
+        }
+        for (int j = 0; j < 2; j++)
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                gridObjects.Add(new GridLocation());
+                GridLocation removeObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(0));
+                removeObject.objRef.transform.SetParent(null);
+                gridObjects.Remove(removeObject);
+                Destroy(removeObject.objRef);
+                GridLocation obj = gridObjects[gridObjects.Count - 1];
+                obj.objRef = GameObject.Instantiate(EmptyObject);
+                obj.objRef.transform.SetParent(LayoutGroup.transform);
+                obj.objRef.name = gridObjects.Count.ToString();
+                obj.name = gridObjects.Count.ToString();
+                obj.type = objectType.Ladder;
+                obj.posX = i;
+                obj.posY = j + 6;
+                if (j > 0 && j % 2 != 0 && i % 2 == 0)
+                {
+                    obj.blockLife = 2;
+                    obj.objRef.GetComponent<Image>().sprite = DirtBlock;
+                    obj.type = objectType.Earth;
+                }
+                else
+                {
+                    obj.objRef.GetComponentInParent<Image>().enabled = false;
+                }
+            }
+        }
     }
 
     IEnumerator Updateworld()
