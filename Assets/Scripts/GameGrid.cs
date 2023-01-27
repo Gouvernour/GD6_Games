@@ -308,6 +308,18 @@ public class GameGrid : MonoBehaviour
                         }
                     }
 
+                }else if(j % 2 == 0 && i == 0 || j % 2 == 0 && i == worldSizeX - 1)
+                {
+                    if (i == 0)
+                    {
+
+                    }
+                    else if (i == worldSizeX - 1)
+                    {
+
+                    }
+                    else
+                        Debug.LogWarning("This should not be called");
                 }
                 else
                 {
@@ -331,8 +343,15 @@ public class GameGrid : MonoBehaviour
         return false;
     }
 
-    IEnumerator Updateworld()
+    bool SpawnEnemy(bool enemy1)
     {
+
+        return false;
+    }
+
+    IEnumerator UpdateEnemies()
+    {
+
         yield return null;
 
     }
