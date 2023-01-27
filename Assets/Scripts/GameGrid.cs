@@ -9,7 +9,8 @@ public enum objectType
     Ladder,
     Player,
     Earth,
-    Metal
+    Metal,
+    Enemy
 }
 [System.Serializable]
 public class GridLocation
@@ -21,6 +22,7 @@ public class GridLocation
     public int posY;
     public int posX;
     public Sprite sprite;
+    bool moveleft;
 }
 
 public class GameGrid : MonoBehaviour
@@ -48,7 +50,8 @@ public class GameGrid : MonoBehaviour
     [Header("Enemies")]
     [SerializeField, Tooltip("Percentage of initial chance to spawn enemies")] float initialChance;
     [SerializeField, Tooltip("Current chance of spawning new enemy")] float EnemyChance;
-    [SerializeField, Tooltip("Multiplier to increase spawn chance per new level")] float ChanceMultiplier;
+    [SerializeField, Tooltip("Multiplier to increase spawn chance per new level")] float EnemyChanceMultiplier;
+    [SerializeField, Tooltip("Multiplier to increase spawn chance per new level")] float MaxEnemyChance;
     [SerializeField, Tooltip("Max Allowed enemies")] int MaxActiveEnemies;
     [SerializeField, Tooltip("Currently active enemies on screen")] int ActiveEnemies;
 
@@ -253,6 +256,8 @@ public class GameGrid : MonoBehaviour
     {
         foreach (GridLocation gridPiece in gridObjects)
         {
+            if (gridPiece.type == objectType.Enemy)
+                ActiveEnemies--;
             gridPiece.posY -= 2;
         }
         for (int j = 0; j < 2; j++)
@@ -308,15 +313,29 @@ public class GameGrid : MonoBehaviour
                         }
                     }
 
-                }else if(j % 2 == 0 && i == 0 || j % 2 == 0 && i == worldSizeX - 1)
+                }else if(j % 2 == 0 && i == 1 || (j % 2 == 0 && i == worldSizeX - 1))
                 {
-                    if (i == 0)
+                    if (i == 1)
                     {
-
+                        if(SpawnEnemy(true))
+                        {
+                            obj.type = objectType.Enemy;
+                            obj.objRef.GetComponent<Image>().sprite = LandEnemy;
+                            obj.objRef.GetComponent<Image>().preserveAspect = true;
+                        }
+                        else
+                            obj.objRef.GetComponentInParent<Image>().enabled = false;
                     }
                     else if (i == worldSizeX - 1)
                     {
-
+                        if(SpawnEnemy(false))
+                        {
+                            obj.type = objectType.Enemy;
+                            obj.objRef.GetComponent<Image>().sprite = FlyEnemy;
+                            obj.objRef.GetComponent<Image>().preserveAspect = true;
+                        }
+                        else
+                            obj.objRef.GetComponentInParent<Image>().enabled = false;
                     }
                     else
                         Debug.LogWarning("This should not be called");
@@ -331,6 +350,10 @@ public class GameGrid : MonoBehaviour
         MetalSpawnChance *= MetalSpawnMultiplier;
         if(MetalSpawnChance > MaxMetalSpawnChance)
             MetalSpawnChance = MaxMetalSpawnChance;
+
+        EnemyChance *= EnemyChanceMultiplier;
+        if (EnemyChance > MaxEnemyChance)
+            EnemyChance = MaxEnemyChance;
     }
 
     bool CreateMetal()
@@ -345,14 +368,31 @@ public class GameGrid : MonoBehaviour
 
     bool SpawnEnemy(bool enemy1)
     {
-
+        if (Random.Range(0, 100) + EnemyChance >= 100f && MaxActiveEnemies > ActiveEnemies)
+        {
+            ActiveEnemies++;
+            
+            return true;
+        }
         return false;
     }
 
+    List<GridLocation> Enemies;
+    float EnemyUpdateSpeed = 1;
     IEnumerator UpdateEnemies()
     {
+        
+        yield return new WaitForSeconds(1);
+        if (Enemies != null)
+        {
+            foreach(GridLocation Enemy in Enemies)
+            {
 
-        yield return null;
+            }
+            UpdateEnemies();
+        }
+        else
+            UpdateEnemies();
 
     }
 }

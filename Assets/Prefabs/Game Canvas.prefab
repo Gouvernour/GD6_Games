@@ -120,10 +120,10 @@ MonoBehaviour:
   worldSizeX: 16
   worldSizeY: 8
   gridObjects: []
-  DirtBlockPlayer: {fileID: 21300000, guid: cb7d7e008228b3f448f9c5156d95a7cd, type: 3}
-  DirtBlockEnemy: {fileID: 21300000, guid: cb7d7e008228b3f448f9c5156d95a7cd, type: 3}
+  DirtBlockPlayer: {fileID: 276803466, guid: f8f3f59e8391b93469b85c1baba693cf, type: 3}
+  DirtBlockEnemy: {fileID: -1972040148, guid: f8f3f59e8391b93469b85c1baba693cf, type: 3}
   SteelBlockPlayer: {fileID: -1424720886, guid: 4ba23044adb13c1489ad0aa9dda8ef6f, type: 3}
-  SteelBlockEnemy: {fileID: 1001289515, guid: 4ba23044adb13c1489ad0aa9dda8ef6f, type: 3}
+  SteelBlockEnemy: {fileID: -1424720886, guid: 4ba23044adb13c1489ad0aa9dda8ef6f, type: 3}
   MinerDig: {fileID: 21300000, guid: 6ca6fa656fecfea4eb8c9a79f57f5ae4, type: 3}
   MinerClimb: {fileID: 21300000, guid: 6f5230321a35cfd4fb149ee53e13ae19, type: 3}
   FlyEnemy: {fileID: -1140739239, guid: 425b068ed4c157f4dbb7b011aff72782, type: 3}
@@ -131,7 +131,8 @@ MonoBehaviour:
   BothEnemy: {fileID: 21300000, guid: 3a2ea9f3c0e528e44ae46f0b739d31b9, type: 3}
   initialChance: 1
   EnemyChance: 1
-  ChanceMultiplier: 1.2
+  EnemyChanceMultiplier: 1.1
+  MaxEnemyChance: 80
   MaxActiveEnemies: 8
   ActiveEnemies: 0
   MaxMetalDirt: 7

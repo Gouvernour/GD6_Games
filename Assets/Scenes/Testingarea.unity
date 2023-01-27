@@ -338,7 +338,8 @@ MonoBehaviour:
   BothEnemy: {fileID: 0}
   initialChance: 0
   EnemyChance: 0
-  ChanceMultiplier: 0
+  EnemyChanceMultiplier: 0
+  MaxEnemyChance: 0
   MaxActiveEnemies: 0
   ActiveEnemies: 0
   MaxMetalDirt: 0
