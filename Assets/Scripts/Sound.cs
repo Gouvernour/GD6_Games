@@ -20,17 +20,26 @@ public enum SoundGroup
     BackButton
 }
 
+public enum PitchVersion
+{
+    First,
+    Second,
+    Third,
+    Fourth
+}
+
 [System.Serializable]
 public class Sound
 {
     public string name;
-    public SoundGroup array;
+    public SoundGroup group;
+    public PitchVersion pitch;
     public AudioClip clip;
 
     [Range(0f, 1f)]
     public float volume;
     [Range(.1f, 3f)]
-    public float pitch;
+    public float Manualpitch;
 
     public bool loop;
 
