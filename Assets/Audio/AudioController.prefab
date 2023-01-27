@@ -136,3 +136,19 @@ MonoBehaviour:
     Manualpitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Start
+    group: 11
+    pitch: 3
+    clip: {fileID: 8300000, guid: b05aa829725084844bb85fa3e1c4104b, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Score
+    group: 9
+    pitch: 3
+    clip: {fileID: 8300000, guid: 45dd6f22013b6a4498bfc9f4170a596f, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
