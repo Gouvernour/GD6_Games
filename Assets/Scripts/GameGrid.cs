@@ -22,7 +22,7 @@ public class GridLocation
     public int posY;
     public int posX;
     public Sprite sprite;
-    bool moveleft;
+    public bool moveleft;
 }
 
 public class GameGrid : MonoBehaviour
@@ -387,7 +387,13 @@ public class GameGrid : MonoBehaviour
         {
             foreach(GridLocation Enemy in Enemies)
             {
+                if(Enemy.moveleft)
+                {
+                    Enemies.Remove(Enemy);
+                }else
+                {
 
+                }
             }
             UpdateEnemies();
         }
