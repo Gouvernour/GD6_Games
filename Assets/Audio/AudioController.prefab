@@ -47,4 +47,68 @@ MonoBehaviour:
   MasterMixer: {fileID: 24300002, guid: e0ed9d2d732d5ad47bf565c9b559b79d, type: 2}
   SFXMixer: {fileID: 1331117240648720724, guid: e0ed9d2d732d5ad47bf565c9b559b79d, type: 2}
   MusicMixer: {fileID: -1839382957293081681, guid: e0ed9d2d732d5ad47bf565c9b559b79d, type: 2}
-  Audio: []
+  Audio:
+  - name: Enemy1Move
+    group: 6
+    pitch: 0
+    clip: {fileID: 8300000, guid: c90e335c8f719c14c890e1204d5f7dbc, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy2Move
+    group: 7
+    pitch: 0
+    clip: {fileID: 8300000, guid: aaa2d6f5312fa4742afe353d262f5311, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Intro
+    group: 8
+    pitch: 0
+    clip: {fileID: 8300000, guid: 3788a8b1920d7494c88c07631ee843c5, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NextLevel
+    group: 4
+    pitch: 0
+    clip: {fileID: 8300000, guid: 9ce8b484027cd06478f41455f56dea50, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NoDig
+    group: 2
+    pitch: 0
+    clip: {fileID: 8300000, guid: e976e4f9a2a67004faa1127f11187924, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Die
+    group: 5
+    pitch: 0
+    clip: {fileID: 8300000, guid: 4f67d1ba49d15054da067fa6aaa070aa, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DIg
+    group: 1
+    pitch: 0
+    clip: {fileID: 8300000, guid: 37adba1bcc20b8740b5cdede22ce2f9b, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Move
+    group: 1
+    pitch: 0
+    clip: {fileID: 8300000, guid: fd311f63348baa0448eefe0e0961eccc, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}

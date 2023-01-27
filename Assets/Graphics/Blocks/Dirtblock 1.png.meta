@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d0c848c601a95c342b41e9309ad30aae
+guid: f8f3f59e8391b93469b85c1baba693cf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dirtblock_0
+      name: Dirtblock 2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 366.5
-        height: 174
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47c0f1e00a2ba6b468a91fad08bb3643
-      internalID: 234443978
+      spriteID: cd677aa9c51f26f4f813b8509309c3fd
+      internalID: 276803466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dirtblock_1
+      name: Dirtblock 2_1
       rect:
         serializedVersion: 2
         x: 366
         y: 0
         width: 366.5
-        height: 174
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12335804c1da06a44992ef9e0062351e
-      internalID: 1124803541
+      spriteID: 0e99ebded93c57f4fa04e7f325e0f8aa
+      internalID: -1972040148
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dirtblock_0: 234443978
-      Dirtblock_1: 1124803541
+      Dirtblock 2_0: 276803466
+      Dirtblock 2_1: -1972040148
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
