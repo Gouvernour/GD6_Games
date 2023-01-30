@@ -60,6 +60,7 @@ public class GameGrid : MonoBehaviour
     [SerializeField] Sprite SteelBlockEnemy;
     [SerializeField] Sprite MinerDig;
     [SerializeField] Sprite MinerClimb;
+    [SerializeField] Sprite MinerDead;
     [SerializeField] Sprite FlyEnemy;
     [SerializeField] Sprite LandEnemy;
     [SerializeField] Sprite BothEnemy;
@@ -606,6 +607,7 @@ public class GameGrid : MonoBehaviour
     {
         audio.PlaySound(SoundGroup.Die);
         PlayerDead = true;
+        Player.objRef.GetComponent<Image>().sprite = MinerDead;
         StopAllCoroutines();
         StartCoroutine(FinishGame());
         
