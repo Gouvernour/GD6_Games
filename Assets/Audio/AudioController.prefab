@@ -113,7 +113,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Move2
-    group: 1
+    group: 3
     pitch: 1
     clip: {fileID: 8300000, guid: df1894ae7c70aae4392353a09bb1ba08, type: 3}
     volume: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Move3
-    group: 1
+    group: 3
     pitch: 2
     clip: {fileID: 8300000, guid: 9ce16ebdebeaf24419a9d26fdef10491, type: 3}
     volume: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Move4
-    group: 1
+    group: 3
     pitch: 3
     clip: {fileID: 8300000, guid: 56a5c5cfc958cf94189a8cd0b5727abf, type: 3}
     volume: 1

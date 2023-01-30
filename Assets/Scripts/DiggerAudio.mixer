@@ -39,7 +39,7 @@ AudioMixerController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GameAudio
+  m_Name: DiggerAudio
   m_OutputGroup: {fileID: 0}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
@@ -48,7 +48,13 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 5c4f91814b3daf7439ea4284da466080
+    name: MasterVolume
+  - guid: 3e2aac1774c296a498db380fe8a60c11
+    name: Music
+  - guid: a7cb603fa06398f4cb19d6d7e692101a
+    name: SFX
   m_AudioMixerGroupViews:
   - guids:
     - 9c945e4c22cac73488bb1a7465349817

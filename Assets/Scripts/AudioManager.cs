@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
     private int previousJumpArraySound = -1;
     private int[] CrystalJumpArraySound = { -1, -1, -1, -1 };
 
-    Dictionary<SoundGroup, List<Sound>> Sounds;
+    public Dictionary<SoundGroup, List<Sound>> Sounds;
 
     public static AudioManager instance;
     private bool SoundCheckDelay;
@@ -28,9 +28,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        Sounds = new Dictionary<SoundGroup, List<Sound>>();
         foreach (Sound a in Audio)
         {
-            if(!Sounds.ContainsKey(a.group))
+            bool keyExist = Sounds.ContainsKey(a.group);
+            if(!keyExist)
             {
                 Sounds.Add(a.group, new List<Sound>());
             }
@@ -38,6 +40,7 @@ public class AudioManager : MonoBehaviour
             {
                 if(a.group == s.Key)
                 {
+                    Debug.Log("Added sound " + a.name + " to the group " + a.group);
                     s.Value.Add(a);
                     break;
                 }
@@ -135,23 +138,23 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(SoundGroup name)
     {
-        if(Sounds.ContainsKey(name))
+        foreach (KeyValuePair<SoundGroup, List<Sound>> s in Sounds)
         {
-            List<Sound> sounds;
-            Sounds.TryGetValue(name, out sounds);
-            if (sounds.Count > 1)
+            if (name == s.Key)
             {
-                int index = Random.Range(0, sounds.Count);
-                sounds[index].source.Play();
+                if(s.Value.Count > 1)
+                {
+                    int index = Random.Range(0, s.Value.Count);
+                    s.Value[index].source.Play();
+                }else if(s.Value.Count == 1)
+                {
+                    s.Value[0].source.Play();
+                }
+                else
+                    Debug.LogError(name + " have an associated group but have no existing sounds inserted to the group");
+                return;
             }
-            else if (sounds.Count == 0)
-            {
-                sounds[0].source.Play();
-            }
-            else
-                Debug.LogError(name + " have an associated group but have no existing sounds inserted to the group");
         }
-        Debug.LogWarning(name + " have no associated group, make sure to add a sound with the group enabled");
     }
 
     public void PlaySound(SoundGroup name, PitchVersion pitchRequest)
@@ -185,7 +188,23 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayMusic(string name)
     {
-        if(Sounds.ContainsKey(SoundGroup.Music))
+        foreach (KeyValuePair<SoundGroup, List<Sound>> s in Sounds)
+        {
+            if (s.Key == SoundGroup.Music)
+            {
+                List<Sound> sounds;
+                if (Sounds.TryGetValue(SoundGroup.Music, out sounds))
+                {
+                    foreach (Sound a in sounds)
+                    {
+                        a.source.Stop();
+                    }
+                    Sound song = sounds.Find(x => x.name == name);
+                    song.source.Play();
+                }
+            }
+        }
+        if (Sounds.ContainsKey(SoundGroup.Music))
         {
             List<Sound> sounds;
             if(Sounds.TryGetValue(SoundGroup.Music, out sounds))

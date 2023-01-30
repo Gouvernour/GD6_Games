@@ -26,8 +26,9 @@ public class SceneManagement : MonoBehaviour
 
     IEnumerator timer ()
     {
+        AudioManager.instance.PlaySound(SoundGroup.AcceptButton);
         pressAny.GetComponent<Animator>().Play("Start");
-       yield return new WaitForSeconds(timerTime);
+        yield return new WaitForSeconds(timerTime);
         StartGame(daSceneName);
     }
 }
