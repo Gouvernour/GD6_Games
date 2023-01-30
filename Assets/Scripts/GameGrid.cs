@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public enum objectType
@@ -29,6 +31,16 @@ public class GameGrid : MonoBehaviour
 {
     GridLocation Player;    //Reference for player
     PitchVersion currentPitch = PitchVersion.First;
+    [SerializeField] int currentLevel = 1;
+    [SerializeField] int LowestLevel = 1;
+    bool DoneNewRow = false;
+
+    [Header("Score")]
+    int Score = 0;
+    [SerializeField] TextMeshProUGUI ScoreTxt;
+    int HighScore = 0;
+    [SerializeField] TextMeshProUGUI HighScoreTxt;
+
     [Header("Audio")]
     [SerializeField] AudioManager audio;
 
@@ -41,7 +53,9 @@ public class GameGrid : MonoBehaviour
 
     [Header("Sprites")]
     [SerializeField] Sprite DirtBlockPlayer;
+    [SerializeField] Sprite DirtDugPlayer;
     [SerializeField] Sprite DirtBlockEnemy;
+    [SerializeField] Sprite DirtDugEnemy;
     [SerializeField] Sprite SteelBlockPlayer;
     [SerializeField] Sprite SteelBlockEnemy;
     [SerializeField] Sprite MinerDig;
@@ -68,6 +82,8 @@ public class GameGrid : MonoBehaviour
 
     void Start()
     {
+        if (Saves.instance != null)
+            HighScore = Saves.instance.DiggerHighScore;
         audio = AudioManager.instance;
         StartCoroutine(PregameSound());
         StartCoroutine(UpdateEnemies());
@@ -75,9 +91,16 @@ public class GameGrid : MonoBehaviour
         {
             for (int j = 0; j < worldSizeX; j++)
             {
-                if (i == 0 && j == worldSizeX / 2)
+                if (i == 0)
                 {
-                    //Debug.Log("Half World X = " + j);
+                    gridObjects.Add(new GridLocation());
+                    GridLocation obj = gridObjects[j + (i * worldSizeX)];
+                    obj.objRef = GameObject.Instantiate(EmptyObject);
+                    obj.objRef.transform.SetParent(transform);
+                    obj.objRef.GetComponent<Image>().enabled = false;
+                }
+                else if (i == 1 && j == worldSizeX / 2)
+                {
                     gridObjects.Add(new GridLocation());
                     GridLocation obj = gridObjects[j + (i * worldSizeX)];
                     obj.objRef = GameObject.Instantiate(PlayerObject);
@@ -100,14 +123,14 @@ public class GameGrid : MonoBehaviour
                     obj.type = objectType.Ladder;
                     obj.posX = j;
                     obj.posY = i;
-                    if (i > 0 && i % 2 != 0 && j % 2 == 0)
+                    if (i > 1 && i % 2 == 0 && j % 2 == 0)
                     {
                         obj.blockLife = 2;
                         obj.objRef.GetComponent<Image>().sprite = DirtBlockPlayer;
                         obj.objRef.GetComponent<Image>().preserveAspect = true;
                         obj.type = objectType.Earth;
                     }
-                    else if (i > 0 && i % 2 != 0 && j % 2 != 0)
+                    else if (i > 1 && i % 2 == 0 && j % 2 != 0)
                     {
                         obj.objRef.GetComponent<Image>().sprite = DirtBlockEnemy;
                         obj.objRef.GetComponent<Image>().preserveAspect = true;
@@ -126,6 +149,8 @@ public class GameGrid : MonoBehaviour
     public bool PlayerDead = false;
     void Update()
     {
+        ScoreTxt.text = "Score: " + Score;
+        HighScoreTxt.text = "Hi Score: " + HighScore;
         if (IntroPlaying)
             return;
         if (!PlayerDead)
@@ -172,7 +197,6 @@ public class GameGrid : MonoBehaviour
                 GridLocation PLAYER = gridObjects.Find(x => x.type == objectType.Player);
                 int PlayerIndex = PLAYER.objRef.transform.GetSiblingIndex();
                 int PlayerX = PLAYER.posX;
-                Debug.Log(PlayerX);
                 int PlayerY = PLAYER.posY;
                 int SwapIndex;
                 int SwapX;
@@ -216,15 +240,18 @@ public class GameGrid : MonoBehaviour
                     {
                         Debug.Log("Create new Row");
                         NewRow();
+                        DoneNewRow = true;
                         swapIndex -= 32;
                         index -= 32;
                         SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
-
+                        audio.PlaySound(SoundGroup.NextLevel);
+                        Score += 10;
                     }
                     else
                     {
                         SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
-
+                        if(DoneNewRow)
+                            currentLevel++;
                     }
                     Player.objRef.transform.SetSiblingIndex(swapIndex);
                     int swapX = SwapObject.posX;
@@ -233,30 +260,80 @@ public class GameGrid : MonoBehaviour
                     SwapObject.posX = PlayerX;
                     SwapObject.posY -= 2;
                     SwapObject.objRef.transform.SetSiblingIndex(index);
-                    
-                    audio.PlaySound(SoundGroup.Move, currentPitch);
-                    audio.PlaySound(SoundGroup.NextLevel);
+                    if(!DoneNewRow)
+                    {
+                        currentLevel++;
+                        if(currentLevel > LowestLevel)
+                        {
+                            Score += 10;
+                            LowestLevel = currentLevel;
+                            Debug.Log(currentLevel + " : " + LowestLevel);
+                            audio.PlaySound(SoundGroup.NextLevel);
+
+                        }
+                        else
+                        {
+                            audio.PlaySound(SoundGroup.Move, currentPitch);
+                            switch (currentLevel)
+                            {
+                                case 1:
+                                    currentPitch = PitchVersion.First;
+                                    break;
+                                case 2:
+                                    currentPitch = PitchVersion.Second;
+                                    break;
+                                case 3:
+                                    currentPitch = PitchVersion.Third;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        audio.PlaySound(SoundGroup.Move, currentPitch);
+                        switch (currentLevel)
+                        {
+                            case 1:
+                                currentPitch = PitchVersion.First;
+                                break;
+                            case 2:
+                                currentPitch = PitchVersion.Second;
+                                break;
+                            case 3:
+                                currentPitch = PitchVersion.Third;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
                 }
                 else if (Dirt.type == objectType.Earth)
                 {
                     audio.PlaySound(SoundGroup.Dig);
                     Dirt.blockLife--;
+                    GridLocation ConnectedDirt = gridObjects.Find(x => x.objRef.transform == transform.GetChild(objectCheckIndex + 1));
                     if (Dirt.blockLife <= 0)
                     {
                         Dirt.type = objectType.Ladder;
                         Dirt.objRef.GetComponentInParent<Image>().enabled = false;
-                        GridLocation ConnectedDirt = gridObjects.Find(x => x.objRef.transform == transform.GetChild(objectCheckIndex + 1));
                         ConnectedDirt.type = objectType.Ladder;
                         ConnectedDirt.objRef.GetComponentInParent<Image>().enabled = false;
+                    }else
+                    {
+                        Dirt.objRef.GetComponentInParent<Image>().sprite = DirtDugPlayer;
+                        ConnectedDirt.objRef.GetComponentInParent<Image>().sprite = DirtDugEnemy;
                     }
                 }
                 else if (Dirt.type == objectType.Metal)
                     audio.PlaySound(SoundGroup.CantDig);
 
             }
-                else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (Player.posY == 0)
+                if (Player.posY == 1)
                     return;
                 else
                 {
@@ -275,6 +352,22 @@ public class GameGrid : MonoBehaviour
                         Player.posX = swapX;
                         SwapObject.posX = PlayerX;
                         SwapObject.objRef.transform.SetSiblingIndex(index);
+                        audio.PlaySound(SoundGroup.Move, currentPitch);
+                        currentLevel--;
+                        switch (currentLevel)
+                        {
+                            case 1:
+                                currentPitch = PitchVersion.First;
+                                break;
+                            case 2:
+                                currentPitch = PitchVersion.Second;
+                                break;
+                            case 3:
+                                currentPitch = PitchVersion.Third;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     else if (Dirt.type == objectType.Earth)
                     {
@@ -298,7 +391,7 @@ public class GameGrid : MonoBehaviour
             for (int i = 0; i < 16; i++)
             {
                 gridObjects.Add(new GridLocation());
-                GridLocation removeObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(0));
+                GridLocation removeObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(16));
                 removeObject.objRef.transform.SetParent(null);
                 gridObjects.Remove(removeObject);
                 Destroy(removeObject.objRef);
@@ -439,7 +532,6 @@ public class GameGrid : MonoBehaviour
                     
                     if (EnemyX <= 1)
                     {
-                        Debug.Log("Enemy OffScreen");
                         Enemy.type = objectType.Ladder;
                         Enemy.objRef.GetComponentInParent<Image>().enabled = false;
                         SwapIndex = 0;
@@ -463,7 +555,6 @@ public class GameGrid : MonoBehaviour
                     Enemy.posX = swapX;
                     SwapObject.posX = EnemyX;
                     SwapObject.objRef.transform.SetSiblingIndex(EnemyIndex);
-                    Debug.Log("Enemy is moving Left");
                 }
                 else
                 {
@@ -476,7 +567,6 @@ public class GameGrid : MonoBehaviour
 
                     if (EnemyX >= worldSizeX - 1)
                     {
-                        Debug.Log("Enemy OffScreen");
                         Enemy.type = objectType.Ladder;
                         Enemy.objRef.GetComponentInParent<Image>().enabled = false;
                         SwapIndex = EnemyX;
@@ -500,7 +590,6 @@ public class GameGrid : MonoBehaviour
                     Enemy.posX = swapX;
                     SwapObject.posX = EnemyX;
                     SwapObject.objRef.transform.SetSiblingIndex(EnemyIndex);
-                    Debug.Log("Enemy is moving Right");
                 }
             }
         }
@@ -516,11 +605,29 @@ public class GameGrid : MonoBehaviour
     void KillPlayer()
     {
         audio.PlaySound(SoundGroup.Die);
-        Debug.Log("Player Got Killed");
         PlayerDead = true;
         StopAllCoroutines();
+        StartCoroutine(FinishGame());
+        
     }
 
+    IEnumerator FinishGame()
+    {
+        yield return new WaitForSeconds(1f);
+        if (Score > HighScore)
+        {
+            HighScore = Score;
+            if(Saves.instance != null)
+            {
+                Saves.instance.DiggerHighScore = HighScore;
+                Saves.instance.Save();
+
+            }
+            audio.PlaySound(SoundGroup.HighScore);
+        }
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("MainMenu");
+    }
     IEnumerator PregameSound()
     {
         IntroPlaying = true;

@@ -11,14 +11,10 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup MusicMixer;
 
     public Sound[] Audio;
-    private int previousJumpArraySound = -1;
-    private int[] CrystalJumpArraySound = { -1, -1, -1, -1 };
 
     public Dictionary<SoundGroup, List<Sound>> Sounds;
 
     public static AudioManager instance;
-    private bool SoundCheckDelay;
-    private bool InitialSetSFXVol = true;
     void Awake()
     {
         if (instance == null)
@@ -60,7 +56,6 @@ public class AudioManager : MonoBehaviour
                     a.volume = 0.0001f;
                     a.source.volume = 0.0001f;
                 }
-                //Debug.Log("Sound " + s.name + "'s volume is set to" + s.volume + " " + s.source.volume);
                 a.source.pitch = a.Manualpitch;
                 a.source.loop = a.loop;
 
@@ -103,32 +98,32 @@ public class AudioManager : MonoBehaviour
 
     public void SetSFXVol(float value)  //Settings Change SFX Volume
     {
-        //foreach (Sound s in sounds)
-        //{
-        //    s.source.outputAudioMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Log10(value * 2) * 20);
-        //}
-        //foreach (Sound s in AmeliteVoices)
-        //{
-        //    s.source.outputAudioMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Log10(value * 2) * 20);
-        //}
-        //foreach (Sound s in BlobbyVoices)
-        //{
-        //    s.source.outputAudioMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Log10(value * 2) * 20);
-        //}
-        //if (!SoundCheckDelay && !InitialSetSFXVol)
-        //{
-        //    StartCoroutine(SettingsCheckNewSFXVol());
-        //}
-        //else if (InitialSetSFXVol)
-        //    InitialSetSFXVol = false;
+        foreach (KeyValuePair<SoundGroup, List<Sound>> s in Sounds)
+        {
+            if (s.Key != SoundGroup.Music)
+            {
+                foreach (Sound a in s.Value)
+                {
+                    a.source.outputAudioMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Log10(value * 2) * 20);
+
+                }
+            }
+        }
     }
 
     public void SetMusicVol(float value)    //Settings Change Music Volume
     {
-        //foreach (Sound s in music)
-        //{
-        //    s.source.outputAudioMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Log10(value * 2) * 20);
-        //}
+        foreach (KeyValuePair<SoundGroup, List<Sound>> s in Sounds)
+        {
+            if(s.Key == SoundGroup.Music)
+            {
+                foreach(Sound a in s.Value)
+                {
+                    a.source.outputAudioMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Log10(value * 2) * 20);
+
+                }
+            }
+        }
     }
 
     public void SetMasterVol(float value)   //Settings Change Master Volume
@@ -160,31 +155,30 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(SoundGroup name, PitchVersion pitchRequest)
     {
         List<Sound> pitchedSounds = new List<Sound>();
-        if (Sounds.ContainsKey(name))
+        foreach (KeyValuePair<SoundGroup, List<Sound>> s in Sounds)
         {
             List<Sound> sounds;
             Sounds.TryGetValue(name, out sounds);
             foreach (Sound sound in sounds)
             {
-                if(sound.pitch == pitchRequest)
+                if (sound.pitch == pitchRequest)
                 {
                     pitchedSounds.Add(sound);
                 }
             }
-
             if (pitchedSounds.Count > 1)
             {
-                int index = Random.Range(0, pitchedSounds.Count);
+                int index = Random.Range(0, s.Value.Count);
                 pitchedSounds[index].source.Play();
             }
-            else if (pitchedSounds.Count == 0)
+            else if (s.Value.Count == 1)
             {
                 pitchedSounds[0].source.Play();
             }
             else
-                Debug.LogError(name + " have an associated group but have not the " + pitchRequest + " inserted to the group");
+                Debug.LogError(name + " have an associated group but have no existing sounds inserted to the group");
+            return;
         }
-        Debug.LogWarning(name + " have no associated group, make sure to add a sound with the group enabled");
     }
     public void PlayMusic(string name)
     {
