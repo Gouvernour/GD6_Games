@@ -214,6 +214,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3235306225051897381, guid: c17b75f9f736421438c101ffb47a778c, type: 3}
+      propertyPath: DirtDugEnemy
+      value: 
+      objectReference: {fileID: 1339946248, guid: f5b57ffae1a66ec4da2676d5d407d8ce, type: 3}
+    - target: {fileID: 3235306225051897381, guid: c17b75f9f736421438c101ffb47a778c, type: 3}
+      propertyPath: DirtDugPlayer
+      value: 
+      objectReference: {fileID: -200413490, guid: f5b57ffae1a66ec4da2676d5d407d8ce, type: 3}
+    - target: {fileID: 3235306225051897381, guid: c17b75f9f736421438c101ffb47a778c, type: 3}
+      propertyPath: DirtBlockEnemy
+      value: 
+      objectReference: {fileID: 363113915, guid: 8b61c74d599907a4f859ccfdb5031a8b, type: 3}
+    - target: {fileID: 3235306225051897381, guid: c17b75f9f736421438c101ffb47a778c, type: 3}
+      propertyPath: DirtBlockPlayer
+      value: 
+      objectReference: {fileID: -105232839, guid: 8b61c74d599907a4f859ccfdb5031a8b, type: 3}
+    - target: {fileID: 3235306225051897381, guid: c17b75f9f736421438c101ffb47a778c, type: 3}
+      propertyPath: SteelBlockEnemy
+      value: 
+      objectReference: {fileID: 1001289515, guid: 4ba23044adb13c1489ad0aa9dda8ef6f, type: 3}
     - target: {fileID: 3235306225101017723, guid: c17b75f9f736421438c101ffb47a778c, type: 3}
       propertyPath: m_Name
       value: Game Canvas

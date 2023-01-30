@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb7d7e008228b3f448f9c5156d95a7cd
+guid: f5b57ffae1a66ec4da2676d5d407d8ce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,113 +100,47 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dirtblock_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 150
-        width: 366
-        height: 150
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a35a06aa0c97274d956e81f755e1e07
-      internalID: 346166750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dirtblock_1
-      rect:
-        serializedVersion: 2
-        x: 366
-        y: 150
-        width: 366.5
-        height: 150
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc1dfe9b5dc02674fba2a9af1b720904
-      internalID: -597963044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dirtblock_2
+      name: Duggedblock 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 366.5
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c23596e9bb2e3bf40a97035deedd8db6
-      internalID: -1806830127
+      spriteID: c9bf43b76dbc6cc4c9bcc92c85f877b7
+      internalID: -200413490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dirtblock_3
+      name: Duggedblock 1_1
       rect:
         serializedVersion: 2
         x: 366
         y: 0
         width: 366.5
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3004ed70d271117449a3111ee6353818
-      internalID: 382198000
+      spriteID: 7ea7a1d9edab6564a887800e72f5423d
+      internalID: 1339946248
       vertices: []
       indices: 
       edges: []
@@ -222,10 +156,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dirtblock_2: -1806830127
-      Dirtblock_0: 346166750
-      Dirtblock_3: 382198000
-      Dirtblock_1: -597963044
+      Duggedblock 1_0: -200413490
+      Duggedblock 1_1: 1339946248
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
