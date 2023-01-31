@@ -351,7 +351,9 @@ public class GameGrid : MonoBehaviour
                         Player.objRef.transform.SetSiblingIndex(swapIndex);
                         int swapX = SwapObject.posX;
                         Player.posX = swapX;
+                        Player.posY -= 2;
                         SwapObject.posX = PlayerX;
+                        SwapObject.posY += 2;
                         SwapObject.objRef.transform.SetSiblingIndex(index);
                         audio.PlaySound(SoundGroup.Move, currentPitch);
                         currentLevel--;
