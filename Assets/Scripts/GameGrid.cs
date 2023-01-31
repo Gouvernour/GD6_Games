@@ -607,7 +607,7 @@ public class GameGrid : MonoBehaviour
     {
         audio.PlaySound(SoundGroup.Die);
         PlayerDead = true;
-        Player.objRef.GetComponent<Image>().sprite = MinerDead;
+        
         StopAllCoroutines();
         StartCoroutine(FinishGame());
         
@@ -626,6 +626,47 @@ public class GameGrid : MonoBehaviour
 
             }
             audio.PlaySound(SoundGroup.HighScore);
+        }
+        while(Player.posY > 0)
+        {
+            if(Player.posY > 1)
+            {
+                int Playerindex = Player.objRef.transform.GetSiblingIndex();
+                int swapIndex = Playerindex - worldSizeX * 2;
+                int objectCheckIndex = Playerindex - worldSizeX;
+                int PlayerX = Player.posX;
+                GridLocation SwapObject;
+                SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
+                Player.objRef.transform.SetSiblingIndex(swapIndex);
+                int swapX = SwapObject.posX;
+                Player.posX = swapX;
+                Player.posY -= 2;
+                SwapObject.posX = PlayerX;
+                SwapObject.objRef.transform.SetSiblingIndex(Playerindex);
+                audio.PlaySound(SoundGroup.Move);
+            }
+            else if (Player.posY == 1)
+            {
+                int Playerindex = Player.objRef.transform.GetSiblingIndex();
+                int swapIndex = Playerindex - worldSizeX;
+                int objectCheckIndex = Playerindex - worldSizeX;
+                int PlayerX = Player.posX;
+                GridLocation SwapObject;
+                SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
+                Player.objRef.transform.SetSiblingIndex(swapIndex);
+                int swapX = SwapObject.posX;
+                Player.posX = swapX;
+                Player.posY -= 1;
+                SwapObject.posX = PlayerX;
+                SwapObject.objRef.transform.SetSiblingIndex(Playerindex);
+            }
+            if(Player.posY == 0)
+            {
+                Player.objRef.GetComponent<Image>().sprite = MinerDead;
+                audio.PlaySound(SoundGroup.Die);
+            }
+
+            yield return new WaitForSeconds(.2f);
         }
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("MainMenu");
