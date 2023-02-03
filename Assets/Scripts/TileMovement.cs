@@ -13,6 +13,8 @@ public class TileMovement : MonoBehaviour
     Tilemap AlllGround;
     [SerializeField]
     Tilemap DangerTile;
+    [SerializeField]
+    Tilemap Doors;
 
     [SerializeField] int wrongTileDmg = 1;
     static public TileMovement instance;
@@ -35,6 +37,9 @@ public class TileMovement : MonoBehaviour
             }else if(SafeTiles.HasTile(gridPosition))
             {
                 Debug.Log("Player hit safe tile");
+            }else if (Doors.HasTile(gridPosition))
+            {
+
             }
         }
     }
