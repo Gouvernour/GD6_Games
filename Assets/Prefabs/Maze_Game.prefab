@@ -102,6 +102,7 @@ MonoBehaviour:
   SafeTiles: {fileID: 5002552373327428569}
   AlllGround: {fileID: 5002552371540595054}
   DangerTile: {fileID: 5002552371285663294}
+  Doors: {fileID: 0}
   wrongTileDmg: 1
 --- !u!114 &5002552372796225461
 MonoBehaviour:
@@ -218,6 +219,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5002552373086866948}
     m_Modifications:
+    - target: {fileID: 3144950758385705613, guid: 5b4972676ea6f3247ad4544a11d9ca3f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3144950758398320154, guid: 5b4972676ea6f3247ad4544a11d9ca3f, type: 3}
       propertyPath: m_Name
       value: Grid
@@ -265,6 +270,14 @@ PrefabInstance:
     - target: {fileID: 3144950758398320228, guid: 5b4972676ea6f3247ad4544a11d9ca3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144950759015753926, guid: 5b4972676ea6f3247ad4544a11d9ca3f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291991872956509011, guid: 5b4972676ea6f3247ad4544a11d9ca3f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b4972676ea6f3247ad4544a11d9ca3f, type: 3}
