@@ -9,7 +9,8 @@ public class Timer : MonoBehaviour
     [SerializeField] float time;
     [SerializeField] float newRoomDelay = 15;
     [SerializeField] Text timeText;
-    [SerializeField] Player;
+    [SerializeField] Player instance;
+    [SerializeField] int damage = 1;
 
     private void Update()
     {
@@ -42,6 +43,7 @@ public class Timer : MonoBehaviour
     {
         yield return new WaitForSeconds(hitTimer);
         //Take Damage and Restart Timer
+        Player.instance.TakeDamage(damage);
         DamageTick();
     }
 
@@ -53,6 +55,6 @@ public class Timer : MonoBehaviour
 
     void EndGame()
     {
-
+        //Game over
     }
 }
