@@ -215,15 +215,39 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: 108582.375
+      e01: 0
+      e02: 1.8295932e-19
+      e03: 1.8295932e-19
+      e10: 7.02e-43
+      e11: 0
+      e12: 6.98e-43
+      e13: 6.98e-43
+      e20: 5.494648e-30
+      e21: 1e-45
+      e22: -1.8677755e-28
+      e23: 2.055378
+      e30: 4.5905e-41
+      e31: 0
+      e32: 6.98e-43
+      e33: 7e-43
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Origin: {x: -1, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -493,6 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954756237}
   - component: {fileID: 954756236}
+  - component: {fileID: 954756238}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -567,6 +592,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &954756238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954756235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd3e5ce20db82b4eb5e1fa01b884d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Walls: {fileID: 0}
+  SafeTiles: {fileID: 0}
+  AlllGround: {fileID: 0}
+  DangerTile: {fileID: 0}
+  UP: 117
+  DOWN: 100
+  LEFT: 108
+  RIGHT: 114
 --- !u!1 &1659045121
 GameObject:
   m_ObjectHideFlags: 0
