@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    int MAXHP = 5;
-    int HP = 5;
+    [SerializeField] int MAXHP = 5;
+    [SerializeField] int HP = 5;
     static public Player instance;
 
     private void Awake()
@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
             instance = this;
         }else
             Destroy(gameObject);
+        HP = MAXHP;
     }
 
     public void TakeDamage(int dmg)
