@@ -102,7 +102,7 @@ MonoBehaviour:
   SafeTiles: {fileID: 5002552373327428569}
   AlllGround: {fileID: 5002552371540595054}
   DangerTile: {fileID: 5002552371285663294}
-  Doors: {fileID: 0}
+  Doors: {fileID: 7379099188667807263}
   wrongTileDmg: 1
 --- !u!114 &5002552372796225461
 MonoBehaviour:
@@ -116,6 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec9bc1ee551e34f4f9952f753b068f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MAXHP: 5
+  HP: 5
 --- !u!1 &5002552373086866951
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,5 +306,10 @@ Transform:
 --- !u!1839735485 &5002552373327428569 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 3144950759015753927, guid: 5b4972676ea6f3247ad4544a11d9ca3f, type: 3}
+  m_PrefabInstance: {fileID: 7983121741843878686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &7379099188667807263 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 625557726787249409, guid: 5b4972676ea6f3247ad4544a11d9ca3f, type: 3}
   m_PrefabInstance: {fileID: 7983121741843878686}
   m_PrefabAsset: {fileID: 0}
