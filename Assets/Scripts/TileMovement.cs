@@ -14,6 +14,7 @@ public class TileMovement : MonoBehaviour
     [SerializeField]
     Tilemap DangerTile;
 
+    [SerializeField] int wrongTileDmg = 1;
     static public TileMovement instance;
     
     void Awake()
@@ -29,10 +30,11 @@ public class TileMovement : MonoBehaviour
             Vector3Int gridPosition = AlllGround.WorldToCell(transform.position + (Vector3)Direction);
             if(DangerTile.HasTile(gridPosition))
             {
-
+                Player.instance.TakeDamage(wrongTileDmg);
+                Debug.Log("Player took damage");
             }else if(SafeTiles.HasTile(gridPosition))
             {
-
+                Debug.Log("Player hit safe tile");
             }
         }
     }
