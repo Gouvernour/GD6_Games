@@ -39,7 +39,7 @@ public class TileMovement : MonoBehaviour
                 Debug.Log("Player hit safe tile");
             }else if (Doors.HasTile(gridPosition))
             {
-
+                //Move to next room
             }
         }
     }
