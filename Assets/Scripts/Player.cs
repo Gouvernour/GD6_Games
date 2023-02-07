@@ -7,6 +7,12 @@ public class Player : MonoBehaviour
     [SerializeField] int MAXHP = 5;
     [SerializeField] int HP = 5;
     static public Player instance;
+    public HealthBar healthBar;
+
+    void Start()
+    {
+        healthBar.SetMaxHealth(MAXHP);
+    }
 
     private void Awake()
     {
@@ -21,6 +27,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         HP -= dmg;
+        healthBar.SetHealth(HP);
         if(HP <= 0)
         {
             //Game Over
