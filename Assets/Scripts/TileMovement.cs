@@ -47,6 +47,10 @@ public class TileMovement : MonoBehaviour
     bool CanMove(Vector2 Direction)
     {
         Vector3Int gridPosition = AlllGround.WorldToCell(transform.position + (Vector3)Direction);
+        if(Doors.HasTile(gridPosition))
+        {
+            return true;
+        }
         if (!AlllGround.HasTile(gridPosition) || Walls.HasTile(gridPosition))
             return false;
         return true;
