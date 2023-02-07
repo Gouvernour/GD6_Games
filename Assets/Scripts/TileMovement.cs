@@ -6,10 +6,14 @@ using UnityEngine.Tilemaps;
 public class TileMovement : MonoBehaviour
 {
     [SerializeField]
+    Camera cam;
+
+    [Header("TileMaps")]
+    [SerializeField, Tooltip("Tiles that block player from moving")]
     Tilemap Walls;
-    [SerializeField]
+    [SerializeField, Tooltip("Tiles that are safe to walk on")]
     Tilemap SafeTiles;
-    [SerializeField]
+    [SerializeField, Tooltip("The ground tiles")]
     Tilemap AlllGround;
     [SerializeField]
     Tilemap DangerTile;
@@ -39,7 +43,7 @@ public class TileMovement : MonoBehaviour
                 Debug.Log("Player hit safe tile");
             }else if (Doors.HasTile(gridPosition))
             {
-                //Move to next room
+                MoveToRoom(Direction);
             }
         }
     }
@@ -54,5 +58,12 @@ public class TileMovement : MonoBehaviour
         if (!AlllGround.HasTile(gridPosition) || Walls.HasTile(gridPosition))
             return false;
         return true;
+    }
+
+    void MoveToRoom(Vector2 Direction)
+    {
+        transform.position += (Vector3)Direction;
+        Vector3Int gridPosition = AlllGround.WorldToCell(transform.position);
+
     }
 }
