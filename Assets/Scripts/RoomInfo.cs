@@ -25,5 +25,6 @@ public class RoomInfo : MonoBehaviour
     [SerializeField] doortype Left, Right, Up, Down;
     [SerializeField] ExitDirection exitDirection;
     [SerializeField] ExitDirection hasExitDirection;
-
+    int X;  //World coordinate location
+    int Y;  //World coordinate location
 }
