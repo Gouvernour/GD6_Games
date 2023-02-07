@@ -29,7 +29,7 @@ public class TileMovement : MonoBehaviour
         if(CanMove(Direction))
         {
             transform.position += (Vector3)Direction;
-            Vector3Int gridPosition = AlllGround.WorldToCell(transform.position + (Vector3)Direction);
+            Vector3Int gridPosition = AlllGround.WorldToCell(transform.position);
             if(DangerTile.HasTile(gridPosition))
             {
                 Player.instance.TakeDamage(wrongTileDmg);
