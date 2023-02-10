@@ -41,8 +41,9 @@ public class TileMovement : MonoBehaviour
             }else if(SafeTiles.HasTile(gridPosition))
             {
                 Debug.Log("Player hit safe tile");
-            }else if (Doors.HasTile(gridPosition))
+            }if (Doors.HasTile(gridPosition))
             {
+                Debug.Log("Go to next room");
                 MoveToRoom(Direction);
             }
         }
@@ -64,6 +65,24 @@ public class TileMovement : MonoBehaviour
     {
         transform.position += (Vector3)Direction;
         Vector3Int gridPosition = AlllGround.WorldToCell(transform.position);
+        switch (Direction)
+        {
+            case Vector2 v when v.Equals(Vector2.up):
+                cam.transform.position += cam.orthographicSize * (Vector3)Direction * 2;
+                break;
+            case Vector2 v when v.Equals(Vector2.left):
+                cam.transform.position += (Vector3)new Vector2(-Walls.size.x, 0);
+                break;
+            case Vector2 v when v.Equals(Vector2.right):
+                cam.transform.position += (Vector3)new Vector2(Walls.size.x, 0);
+                break;
+            case Vector2 v when v.Equals(Vector2.down):
+                cam.transform.position += cam.orthographicSize * (Vector3)Direction * 2;
+                break;
+            default:
+                break;
+        }
+        
 
     }
 }
