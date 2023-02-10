@@ -56,3 +56,59 @@ MonoBehaviour:
     Manualpitch: 0
     loop: 0
     source: {fileID: 0}
+  - name: Damage
+    group: 1
+    pitch: 0
+    clip: {fileID: 8300000, guid: 1001a9a374c3e974bbe5beb146e2400a, type: 3}
+    volume: 1
+    Manualpitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Door
+    group: 4
+    pitch: 0
+    clip: {fileID: 8300000, guid: 8e6cc4743d5929f43852a5e76815e322, type: 3}
+    volume: 1
+    Manualpitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GreenTile
+    group: 2
+    pitch: 0
+    clip: {fileID: 8300000, guid: 57f997edf53d5f74b81d402fedb2f1af, type: 3}
+    volume: 1
+    Manualpitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Wind
+    group: 8
+    pitch: 1
+    clip: {fileID: 8300000, guid: f1c04100b61515145a8fdda9f9d79e0b, type: 3}
+    volume: 1
+    Manualpitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: Clock
+    group: 13
+    pitch: 0
+    clip: {fileID: 8300000, guid: a50f616ebe3085841993730e0e2e1877, type: 3}
+    volume: 1
+    Manualpitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: Water
+    group: 8
+    pitch: 2
+    clip: {fileID: 8300000, guid: 6fc46e3d8b0b43148bf47937ac0f4c3e, type: 3}
+    volume: 1
+    Manualpitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: Birds
+    group: 8
+    pitch: 3
+    clip: {fileID: 8300000, guid: 0f92f35708306414289cd83153b45b74, type: 3}
+    volume: 1
+    Manualpitch: 0
+    loop: 1
+    source: {fileID: 0}
