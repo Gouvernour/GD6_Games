@@ -28,6 +28,11 @@ public class TileMovement : MonoBehaviour
         instance = this;
     }
 
+    void Start()
+    {
+        cam = Camera.main;
+    }
+
     public void Move(Vector2 Direction)
     {
         if(CanMove(Direction))

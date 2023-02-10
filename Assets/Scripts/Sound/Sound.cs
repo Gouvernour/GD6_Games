@@ -17,7 +17,8 @@ public enum SoundGroup
     HighScore,
     MovingButton,
     AcceptButton,
-    BackButton
+    BackButton,
+    Misc
 }
 
 public enum PitchVersion
