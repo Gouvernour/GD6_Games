@@ -25,7 +25,10 @@ public class TileMovement : MonoBehaviour
     
     void Awake()
     {
-        instance = this;
+        if(instance != null)
+            Destroy(gameObject);
+        else
+            instance = this;
     }
 
     void Start()
