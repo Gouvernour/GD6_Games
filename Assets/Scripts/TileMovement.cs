@@ -10,7 +10,7 @@ public class TileMovement : MonoBehaviour
 
     [Header("TileMaps")]
     [SerializeField, Tooltip("Tiles that block player from moving")]
-    Tilemap Walls;
+    public Tilemap Walls;
     [SerializeField, Tooltip("Tiles that are safe to walk on")]
     Tilemap SafeTiles;
     [SerializeField, Tooltip("The ground tiles")]

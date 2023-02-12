@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public enum direction
 {
+    start,
     Left,
     Right,
     Up,
@@ -34,9 +35,9 @@ public class RoomController : MonoBehaviour
     }
     void Start()
     {
-        currentlocation.x = 1;
+        currentlocation.x = 0;
         currentlocation.y = 0;
-        GetRoom();
+
     }
 
     public void newRooms(RoomInfo curr, direction IncomingDir)
@@ -44,6 +45,10 @@ public class RoomController : MonoBehaviour
         switch (curr.exitDirection)
         {
             case RoomInfo.ExitDirection.None:
+                if (IncomingDir == direction.start)
+                {
+                    GetRoom();
+                }
                 break;
             case RoomInfo.ExitDirection.Left:
                 if(IncomingDir == direction.Left)
@@ -73,6 +78,7 @@ public class RoomController : MonoBehaviour
                 break;
         }
         bool roomCorrect = false;
+        currentlocation.x += 1;
         RoomInfo newRoom = GetRoom();
         while(!roomCorrect)
         {
@@ -121,7 +127,8 @@ public class RoomController : MonoBehaviour
         if(roomDetails.exitDirection == RoomInfo.ExitDirection.None || roomDetails.hasExitDirection == RoomInfo.ExitDirection.None)
         {
             //room is valid
-            roomDetails.transform.position = new Vector3(currentlocation.x, currentlocation.y, 0);
+            //roomDetails.transform.position = new Vector3(currentlocation.x * TileMovement.instance.Walls.size.x, currentlocation.y * TileMovement.instance.Walls.size.y, 0);
+            //print(currentlocation);
         }else if(roomDetails.exitDirection != RoomInfo.ExitDirection.None)
         {
 
@@ -132,5 +139,10 @@ public class RoomController : MonoBehaviour
     {
         SceneManager.LoadScene("Room_1", LoadSceneMode.Additive);
         return null;
+    }
+
+    IEnumerator SpawningRooms()
+    {
+        yield return null;
     }
 }
