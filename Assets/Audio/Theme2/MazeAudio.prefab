@@ -128,3 +128,4 @@ MonoBehaviour:
   BirdsRooms: []
   WaterRooms: []
   WindRooms: []
+  NoAmbianceRooms: []

@@ -52,10 +52,12 @@ public class TileMovement : MonoBehaviour
             }else if(SafeTiles.HasTile(gridPosition))
             {
                 Debug.Log("Player hit safe tile");
+                AudioManager.instance.PlaySound(SoundGroup.CantDig);
             }if (Doors.HasTile(gridPosition))
             {
                 Debug.Log("Go to next room");
                 MoveToRoom(Direction);
+                AudioManager.instance.PlaySound(SoundGroup.NextLevel);
             }
         }
     }
