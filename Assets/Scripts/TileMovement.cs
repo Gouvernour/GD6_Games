@@ -5,10 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class TileMovement : MonoBehaviour
 {
+    public Animator anim;
     [SerializeField]
     Camera cam;
-    [SerializeField]
-    Animation anim;
 
     [Header("TileMaps")]
     [SerializeField, Tooltip("Tiles that block player from moving")]
@@ -47,7 +46,8 @@ public class TileMovement : MonoBehaviour
             AudioManager.instance.PlaySound(SoundGroup.Move);
             transform.position += (Vector3)Direction;
             Vector3Int gridPosition = AlllGround.WorldToCell(transform.position);
-            anim.Play();
+            anim.SetBool("hopp", true);
+            StartCoroutine(ResetAnim());
             if(DangerTile.HasTile(gridPosition))
             {
                 Player.instance.TakeDamage(wrongTileDmg);
@@ -101,5 +101,10 @@ public class TileMovement : MonoBehaviour
         }
         
 
+    }
+    IEnumerator ResetAnim()
+    {
+        yield return null;
+        anim.SetBool("hopp", false);
     }
 }
