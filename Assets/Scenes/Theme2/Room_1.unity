@@ -1530,6 +1530,14 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[24].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 7378070277446925347, guid: 22805adfef6f33e489b1774e5d81c07a, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378070277446925347, guid: 22805adfef6f33e489b1774e5d81c07a, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 5dfc9e76b1fea7e47b2054814b29815b, type: 2}
     - target: {fileID: 7379099188667807263, guid: 22805adfef6f33e489b1774e5d81c07a, type: 3}
       propertyPath: m_Size.x
       value: 18
