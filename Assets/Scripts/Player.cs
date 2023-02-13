@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         HP -= dmg;
+        AudioManager.instance.PlaySound(SoundGroup.Dig);
+        print("playing Sound");
         healthBar.SetHealth(HP);
         if(HP <= 0)
         {

@@ -144,6 +144,7 @@ public class AudioManager : MonoBehaviour
                 }else if(s.Value.Count == 1)
                 {
                     s.Value[0].source.Play();
+                    print("PlayingSound");
                 }
                 else
                     Debug.LogError(name + " have an associated group but have no existing sounds inserted to the group");

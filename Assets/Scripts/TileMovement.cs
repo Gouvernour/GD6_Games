@@ -34,12 +34,14 @@ public class TileMovement : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        transform.SetParent(null);
     }
 
     public void Move(Vector2 Direction)
     {
         if(CanMove(Direction))
         {
+            AudioManager.instance.PlaySound(SoundGroup.Move);
             transform.position += (Vector3)Direction;
             Vector3Int gridPosition = AlllGround.WorldToCell(transform.position);
             if(DangerTile.HasTile(gridPosition))
