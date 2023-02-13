@@ -35,6 +35,7 @@ public class TileMovement : MonoBehaviour
     {
         cam = Camera.main;
         transform.SetParent(null);
+        AudioManager.instance.PlaySound(SoundGroup.Misc);
     }
 
     public void Move(Vector2 Direction)

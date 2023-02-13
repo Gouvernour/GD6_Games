@@ -173,8 +173,8 @@ AudioMixerController:
   - {fileID: 24500006}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
-  m_EnableSuspend: 1
-  m_UpdateMode: 0
+  m_EnableSuspend: 0
+  m_UpdateMode: 1
   m_ExposedParameters:
   - guid: e73b6bd255f0f78428388c85f170d7cf
     name: Birds
@@ -258,7 +258,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 1ffa77bdffaeddf47a30f40108c4ff7a
-  m_FloatValues: {}
+  m_FloatValues:
+    9e9d1773cacb3e14f83bfadf4840aea7: 0.13552584
   m_TransitionOverrides: {}
 --- !u!243 &326602159468194502
 AudioMixerGroupController:
