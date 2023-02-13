@@ -1961,38 +1961,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5939606705803266411, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
-      propertyPath: Audio.Array.data[0].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939606705803266411, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
-      propertyPath: Audio.Array.data[1].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939606705803266411, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
-      propertyPath: Audio.Array.data[2].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939606705803266411, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
-      propertyPath: Audio.Array.data[3].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939606705803266411, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
-      propertyPath: Audio.Array.data[4].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939606705803266411, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
-      propertyPath: Audio.Array.data[5].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939606705803266411, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
-      propertyPath: Audio.Array.data[6].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939606705803266411, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
-      propertyPath: Audio.Array.data[7].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5939606705803266412, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
       propertyPath: m_Name
       value: MazeAudio
