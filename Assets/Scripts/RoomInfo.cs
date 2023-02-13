@@ -24,8 +24,16 @@ public class RoomInfo : MonoBehaviour
 
     [SerializeField] doortype Left, Right, Up, Down;
     [SerializeField] public ExitDirection exitDirection;
-    [SerializeField] ExitDirection hasExitDirection;
+    [SerializeField] public ExitDirection hasExitDirection;
 
     int X;  //World coordinate location
     int Y;  //World coordinate location
+
+    private void Start()
+    {
+        if(RoomController.instance != null)
+        {
+            RoomController.instance.LoadedRoom(this);
+        }
+    }
 }

@@ -10,7 +10,7 @@ public class TileMovement : MonoBehaviour
 
     [Header("TileMaps")]
     [SerializeField, Tooltip("Tiles that block player from moving")]
-    Tilemap Walls;
+    public Tilemap Walls;
     [SerializeField, Tooltip("Tiles that are safe to walk on")]
     Tilemap SafeTiles;
     [SerializeField, Tooltip("The ground tiles")]
@@ -25,18 +25,24 @@ public class TileMovement : MonoBehaviour
     
     void Awake()
     {
-        instance = this;
+        if(instance != null)
+            Destroy(gameObject);
+        else
+            instance = this;
     }
 
     void Start()
     {
         cam = Camera.main;
+        transform.SetParent(null);
+        AudioManager.instance.PlaySound(SoundGroup.Misc);
     }
 
     public void Move(Vector2 Direction)
     {
         if(CanMove(Direction))
         {
+            AudioManager.instance.PlaySound(SoundGroup.Move);
             transform.position += (Vector3)Direction;
             Vector3Int gridPosition = AlllGround.WorldToCell(transform.position);
             if(DangerTile.HasTile(gridPosition))

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public enum direction
 {
+    start,
     Left,
     Right,
     Up,
@@ -14,16 +15,29 @@ public enum direction
 public class RoomController : MonoBehaviour
 {
     [SerializeField]
-    Scene[] scenes;
     Dictionary<Vector2Int, RoomInfo> map;
     RoomInfo currentRoom;
     List<Vector2Int> LocationsCreated = new List<Vector2Int>();
     Vector2Int currentlocation = new Vector2Int();
-    Scene scene;
+
+    public static RoomController instance;
+
+    private void Awake()
+    {
+        if(instance != null)
+            Destroy(gameObject);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+
+        }
+    }
     void Start()
     {
         currentlocation.x = 0;
         currentlocation.y = 0;
+
     }
 
     public void newRooms(RoomInfo curr, direction IncomingDir)
@@ -31,6 +45,10 @@ public class RoomController : MonoBehaviour
         switch (curr.exitDirection)
         {
             case RoomInfo.ExitDirection.None:
+                if (IncomingDir == direction.start)
+                {
+                    GetRoom();
+                }
                 break;
             case RoomInfo.ExitDirection.Left:
                 if(IncomingDir == direction.Left)
@@ -59,51 +77,72 @@ public class RoomController : MonoBehaviour
             default:
                 break;
         }
-        bool roomCorrect;
-        //while(!roomCorrect)
-        //{
-        //    RoomInfo newRoom = GetRoom();
-        //    switch (IncomingDir)
-        //    {
-        //        case direction.Left:
-        //            if(newRoom.exitDirection != RoomInfo.ExitDirection.Left)
-        //            {
-        //                roomCorrect = true;
-        //            }
-        //            break;
-        //        case direction.Right:
-        //            if(newRoom.exitDirection != RoomInfo.ExitDirection.Right)
-        //            {
-        //                roomCorrect = true;
-        //            }
-        //            break;
-        //        case direction.Up:
-        //            if(newRoom.exitDirection != RoomInfo.ExitDirection.Up)
-        //            {
-        //                roomCorrect = true;
-        //            }
-        //            break;
-        //        case direction.Down:
-        //            if(newRoom.exitDirection != RoomInfo.ExitDirection.Down)
-        //            {
-        //                roomCorrect = true;
-        //            }
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //
-        //}
+        bool roomCorrect = false;
+        currentlocation.x += 1;
+        RoomInfo newRoom = GetRoom();
+        while(!roomCorrect)
+        {
+            switch (IncomingDir)
+            {
+                case direction.Left:
+                    if(newRoom.exitDirection != RoomInfo.ExitDirection.Left)
+                    {
+                        roomCorrect = true;
+                    }else
+                        newRoom = GetRoom();
+                    break;
+                case direction.Right:
+                    if(newRoom.exitDirection != RoomInfo.ExitDirection.Right)
+                    {
+                        roomCorrect = true;
+                    }
+                    else
+                        newRoom = GetRoom();
+                    break;
+                case direction.Up:
+                    if(newRoom.exitDirection != RoomInfo.ExitDirection.Up)
+                    {
+                        roomCorrect = true;
+                    }
+                    else
+                        newRoom = GetRoom();
+                    break;
+                case direction.Down:
+                    if(newRoom.exitDirection != RoomInfo.ExitDirection.Down)
+                    {
+                        roomCorrect = true;
+                    }
+                    else
+                        newRoom = GetRoom();
+                    break;
+                default:
+                    newRoom = GetRoom();
+                    break;
+            }
+        
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void LoadedRoom(RoomInfo roomDetails)
     {
+        if(roomDetails.exitDirection == RoomInfo.ExitDirection.None || roomDetails.hasExitDirection == RoomInfo.ExitDirection.None)
+        {
+            //room is valid
+            //roomDetails.transform.position = new Vector3(currentlocation.x * TileMovement.instance.Walls.size.x, currentlocation.y * TileMovement.instance.Walls.size.y, 0);
+            //print(currentlocation);
+        }else if(roomDetails.exitDirection != RoomInfo.ExitDirection.None)
+        {
 
+        }
     }
 
     RoomInfo GetRoom()
     {
+        SceneManager.LoadScene("Room_1", LoadSceneMode.Additive);
         return null;
+    }
+
+    IEnumerator SpawningRooms()
+    {
+        yield return null;
     }
 }

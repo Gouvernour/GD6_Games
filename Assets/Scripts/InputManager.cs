@@ -9,8 +9,18 @@ public class InputManager : MonoBehaviour
     [SerializeField] KeyCode DOWN;
     [SerializeField] KeyCode LEFT;
     [SerializeField] KeyCode RIGHT;
-
-    // Update is called once per frame
+    public static InputManager instance;
+    private InputManager destroythis;
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            destroythis = gameObject.GetComponent<InputManager>();
+            Destroy(destroythis);
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(UP))

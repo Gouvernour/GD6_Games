@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5939606705803266410}
   - component: {fileID: 5939606705803266411}
+  - component: {fileID: 6875733796539800021}
   m_Layer: 0
   m_Name: MazeAudio
   m_TagString: Untagged
@@ -53,7 +54,7 @@ MonoBehaviour:
     pitch: 0
     clip: {fileID: 8300000, guid: 9fcb928a5e5a75e4087cea2723f6451e, type: 3}
     volume: 1
-    Manualpitch: 0
+    Manualpitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Damage
@@ -61,7 +62,7 @@ MonoBehaviour:
     pitch: 0
     clip: {fileID: 8300000, guid: 1001a9a374c3e974bbe5beb146e2400a, type: 3}
     volume: 1
-    Manualpitch: 0
+    Manualpitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Door
@@ -69,7 +70,7 @@ MonoBehaviour:
     pitch: 0
     clip: {fileID: 8300000, guid: 8e6cc4743d5929f43852a5e76815e322, type: 3}
     volume: 1
-    Manualpitch: 0
+    Manualpitch: 1
     loop: 0
     source: {fileID: 0}
   - name: GreenTile
@@ -77,7 +78,7 @@ MonoBehaviour:
     pitch: 0
     clip: {fileID: 8300000, guid: 57f997edf53d5f74b81d402fedb2f1af, type: 3}
     volume: 1
-    Manualpitch: 0
+    Manualpitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Wind
@@ -85,7 +86,7 @@ MonoBehaviour:
     pitch: 1
     clip: {fileID: 8300000, guid: f1c04100b61515145a8fdda9f9d79e0b, type: 3}
     volume: 1
-    Manualpitch: 0
+    Manualpitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Clock
@@ -93,7 +94,7 @@ MonoBehaviour:
     pitch: 0
     clip: {fileID: 8300000, guid: a50f616ebe3085841993730e0e2e1877, type: 3}
     volume: 1
-    Manualpitch: 0
+    Manualpitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Water
@@ -101,7 +102,7 @@ MonoBehaviour:
     pitch: 2
     clip: {fileID: 8300000, guid: 6fc46e3d8b0b43148bf47937ac0f4c3e, type: 3}
     volume: 1
-    Manualpitch: 0
+    Manualpitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Birds
@@ -109,6 +110,21 @@ MonoBehaviour:
     pitch: 3
     clip: {fileID: 8300000, guid: 0f92f35708306414289cd83153b45b74, type: 3}
     volume: 1
-    Manualpitch: 0
+    Manualpitch: 1
     loop: 1
     source: {fileID: 0}
+--- !u!114 &6875733796539800021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939606705803266412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c564ff01c71a146a858aec0eeb79ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BirdsRooms: []
+  WaterRooms: []
+  WindRooms: []
