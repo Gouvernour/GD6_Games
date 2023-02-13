@@ -7,6 +7,8 @@ public class TileMovement : MonoBehaviour
 {
     [SerializeField]
     Camera cam;
+    [SerializeField]
+    Animation anim;
 
     [Header("TileMaps")]
     [SerializeField, Tooltip("Tiles that block player from moving")]
@@ -45,6 +47,7 @@ public class TileMovement : MonoBehaviour
             AudioManager.instance.PlaySound(SoundGroup.Move);
             transform.position += (Vector3)Direction;
             Vector3Int gridPosition = AlllGround.WorldToCell(transform.position);
+            anim.Play();
             if(DangerTile.HasTile(gridPosition))
             {
                 Player.instance.TakeDamage(wrongTileDmg);
@@ -65,6 +68,7 @@ public class TileMovement : MonoBehaviour
     bool CanMove(Vector2 Direction)
     {
         Vector3Int gridPosition = AlllGround.WorldToCell(transform.position + (Vector3)Direction);
+
         if(Doors.HasTile(gridPosition))
         {
             return true;

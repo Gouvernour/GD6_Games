@@ -926,6 +926,10 @@ PrefabInstance:
       propertyPath: m_TileSpriteArray.Array.data[1].m_RefCount
       value: 103
       objectReference: {fileID: 0}
+    - target: {fileID: 5002552372796225460, guid: 22805adfef6f33e489b1774e5d81c07a, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1870377174}
     - target: {fileID: 5002552373086866948, guid: 22805adfef6f33e489b1774e5d81c07a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1967,3 +1971,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 357a4b7015fc195459fb549f0f22f9a0, type: 3}
+--- !u!111 &1870377174 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 7378070277446925347, guid: 22805adfef6f33e489b1774e5d81c07a, type: 3}
+  m_PrefabInstance: {fileID: 81465534}
+  m_PrefabAsset: {fileID: 0}

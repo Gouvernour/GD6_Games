@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  anim: {fileID: 0}
   Walls: {fileID: 5002552372562604432}
   SafeTiles: {fileID: 5002552373327428569}
   AlllGround: {fileID: 5002552371540595054}
