@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class TileMovement : MonoBehaviour
 {
+    public Animator anim;
     [SerializeField]
     Camera cam;
 
@@ -45,6 +46,8 @@ public class TileMovement : MonoBehaviour
             AudioManager.instance.PlaySound(SoundGroup.Move);
             transform.position += (Vector3)Direction;
             Vector3Int gridPosition = AlllGround.WorldToCell(transform.position);
+            anim.SetBool("hopp", true);
+            StartCoroutine(ResetAnim());
             if(DangerTile.HasTile(gridPosition))
             {
                 Player.instance.TakeDamage(wrongTileDmg);
@@ -65,6 +68,7 @@ public class TileMovement : MonoBehaviour
     bool CanMove(Vector2 Direction)
     {
         Vector3Int gridPosition = AlllGround.WorldToCell(transform.position + (Vector3)Direction);
+
         if(Doors.HasTile(gridPosition))
         {
             return true;
@@ -97,5 +101,10 @@ public class TileMovement : MonoBehaviour
         }
         
 
+    }
+    IEnumerator ResetAnim()
+    {
+        yield return null;
+        anim.SetBool("hopp", false);
     }
 }
