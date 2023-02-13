@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c564ff01c71a146a858aec0eeb79ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BirdsRooms: []
+  BirdsRooms:
+  - Room5_2
   WaterRooms: []
   WindRooms: []
+  NoAmbianceRooms: []
