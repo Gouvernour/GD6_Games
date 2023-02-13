@@ -576,6 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd3e5ce20db82b4eb5e1fa01b884d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 64504079631049670}
   cam: {fileID: 0}
   Walls: {fileID: 5002552372562604432}
   SafeTiles: {fileID: 5002552373327428569}
