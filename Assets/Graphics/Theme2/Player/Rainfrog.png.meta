@@ -139,8 +139,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: feee506aef18d8f408b0fb7ff1edec8a
-      internalID: -1373467910
+      spriteID: 2c78f0f6729ff0e4a92c4a04a68cc7b6
+      internalID: 1295229453
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c688e99a916e5646befb0f3ac63a630
-      internalID: -165298252
+      spriteID: 018919158f572914aa623f254b6754be
+      internalID: 1954748046
       vertices: []
       indices: 
       edges: []
@@ -177,9 +177,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Rainfrog_1: -1373467910
+      Rainfrog_1: 1295229453
       Rainfrog_0: 1710041376
-      Rainfrog_2: -165298252
+      Rainfrog_2: 1954748046
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
