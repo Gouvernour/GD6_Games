@@ -131,6 +131,17 @@ public class RoomController : MonoBehaviour
     string AddingScene;
     public void LoadedRoom(RoomInfo roomDetails)
     {
+        if(scenes.Count == 0)
+        {
+            foreach (string scene in mazeRooms.BirdsRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.WaterRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.WindRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.NoAmbianceRooms)
+                scenes.Add(scene);
+        }
         print(map.Count + "MapCount");
         if(map.Count == 0)
         {
@@ -245,6 +256,17 @@ public class RoomController : MonoBehaviour
             }
         }else
         {
+            if(scenes.Count == 0)
+            {
+                foreach (string scene in mazeRooms.BirdsRooms)
+                    scenes.Add(scene);
+                foreach (string scene in mazeRooms.WaterRooms)
+                    scenes.Add(scene);
+                foreach (string scene in mazeRooms.WindRooms)
+                    scenes.Add(scene);
+                foreach (string scene in mazeRooms.NoAmbianceRooms)
+                    scenes.Add(scene);
+            }
             print(scenes.Count + "sceneCount");
             int index = Random.Range(0, scenes.Count);
             AddingScene = scenes[index];
