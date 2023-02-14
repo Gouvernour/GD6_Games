@@ -132,4 +132,9 @@ MonoBehaviour:
   - Room_2_2
   WaterRooms: []
   WindRooms: []
-  NoAmbianceRooms: []
+  NoAmbianceRooms:
+  - Room_1
+  - Room_2
+  - Room_3
+  - Room_4
+  - Room_5

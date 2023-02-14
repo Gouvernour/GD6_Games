@@ -42,7 +42,7 @@ public class GameGrid : MonoBehaviour
     [SerializeField] TextMeshProUGUI HighScoreTxt;
 
     [Header("Audio")]
-    [SerializeField] AudioManager audio;
+    [SerializeField] AudioManager audioScript;
 
     [Header("Grid")]
     [SerializeField] GameObject LayoutGroup;
@@ -85,7 +85,7 @@ public class GameGrid : MonoBehaviour
     {
         if (Saves.instance != null)
             HighScore = Saves.instance.DiggerHighScore;
-        audio = AudioManager.instance;
+        audioScript = AudioManager.instance;
         StartCoroutine(PregameSound());
         StartCoroutine(UpdateEnemies());
         for (int i = 0; i < worldSizeY; i++)
@@ -158,7 +158,7 @@ public class GameGrid : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                audio.PlaySound(SoundGroup.Move, currentPitch);
+                audioScript.PlaySound(SoundGroup.Move, currentPitch);
                 //Debug.Log(gridObjects.Count.ToString());
                 GridLocation PLAYER = gridObjects.Find(x => x.type == objectType.Player);
                 int PlayerIndex = PLAYER.objRef.transform.GetSiblingIndex();
@@ -193,7 +193,7 @@ public class GameGrid : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                audio.PlaySound(SoundGroup.Move, currentPitch);
+                audioScript.PlaySound(SoundGroup.Move, currentPitch);
                 //Debug.Log(gridObjects.Count.ToString());
                 GridLocation PLAYER = gridObjects.Find(x => x.type == objectType.Player);
                 int PlayerIndex = PLAYER.objRef.transform.GetSiblingIndex();
@@ -245,7 +245,7 @@ public class GameGrid : MonoBehaviour
                         swapIndex -= 32;
                         index -= 32;
                         SwapObject = gridObjects.Find(x => x.objRef.transform == transform.GetChild(swapIndex));
-                        audio.PlaySound(SoundGroup.NextLevel);
+                        audioScript.PlaySound(SoundGroup.NextLevel);
                         Score += 10;
                     }
                     else
@@ -269,12 +269,12 @@ public class GameGrid : MonoBehaviour
                             Score += 10;
                             LowestLevel = currentLevel;
                             Debug.Log(currentLevel + " : " + LowestLevel);
-                            audio.PlaySound(SoundGroup.NextLevel);
+                            audioScript.PlaySound(SoundGroup.NextLevel);
 
                         }
                         else
                         {
-                            audio.PlaySound(SoundGroup.Move, currentPitch);
+                            audioScript.PlaySound(SoundGroup.Move, currentPitch);
                             switch (currentLevel)
                             {
                                 case 1:
@@ -293,7 +293,7 @@ public class GameGrid : MonoBehaviour
                     }
                     else
                     {
-                        audio.PlaySound(SoundGroup.Move, currentPitch);
+                        audioScript.PlaySound(SoundGroup.Move, currentPitch);
                         switch (currentLevel)
                         {
                             case 1:
@@ -313,7 +313,7 @@ public class GameGrid : MonoBehaviour
                 }
                 else if (Dirt.type == objectType.Earth)
                 {
-                    audio.PlaySound(SoundGroup.Dig);
+                    audioScript.PlaySound(SoundGroup.Dig);
                     Dirt.blockLife--;
                     GridLocation ConnectedDirt = gridObjects.Find(x => x.objRef.transform == transform.GetChild(objectCheckIndex + 1));
                     if (Dirt.blockLife <= 0)
@@ -329,7 +329,7 @@ public class GameGrid : MonoBehaviour
                     }
                 }
                 else if (Dirt.type == objectType.Metal)
-                    audio.PlaySound(SoundGroup.CantDig);
+                    audioScript.PlaySound(SoundGroup.CantDig);
 
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -355,7 +355,7 @@ public class GameGrid : MonoBehaviour
                         SwapObject.posX = PlayerX;
                         SwapObject.posY += 2;
                         SwapObject.objRef.transform.SetSiblingIndex(index);
-                        audio.PlaySound(SoundGroup.Move, currentPitch);
+                        audioScript.PlaySound(SoundGroup.Move, currentPitch);
                         currentLevel--;
                         switch (currentLevel)
                         {
@@ -526,7 +526,7 @@ public class GameGrid : MonoBehaviour
             {
                 if (Enemy.moveleft)
                 {
-                    audio.PlaySound(SoundGroup.Enemy2Move);
+                    audioScript.PlaySound(SoundGroup.Enemy2Move);
                     int EnemyIndex = Enemy.objRef.transform.GetSiblingIndex();
                     int EnemyX = Enemy.posX;
                     int EnemyY = Enemy.posY;
@@ -561,7 +561,7 @@ public class GameGrid : MonoBehaviour
                 }
                 else
                 {
-                    audio.PlaySound(SoundGroup.Enemy1Move);
+                    audioScript.PlaySound(SoundGroup.Enemy1Move);
                     int EnemyIndex = Enemy.objRef.transform.GetSiblingIndex();
                     int EnemyX = Enemy.posX;
                     int EnemyY = Enemy.posY;
@@ -607,7 +607,7 @@ public class GameGrid : MonoBehaviour
 
     void KillPlayer()
     {
-        audio.PlaySound(SoundGroup.Die);
+        audioScript.PlaySound(SoundGroup.Die);
         PlayerDead = true;
         
         StopAllCoroutines();
@@ -627,7 +627,7 @@ public class GameGrid : MonoBehaviour
                 Saves.instance.Save();
 
             }
-            audio.PlaySound(SoundGroup.HighScore);
+            audioScript.PlaySound(SoundGroup.HighScore);
         }
         while(Player.posY > 0)
         {
@@ -645,7 +645,7 @@ public class GameGrid : MonoBehaviour
                 Player.posY -= 2;
                 SwapObject.posX = PlayerX;
                 SwapObject.objRef.transform.SetSiblingIndex(Playerindex);
-                audio.PlaySound(SoundGroup.Move);
+                audioScript.PlaySound(SoundGroup.Move);
             }
             else if (Player.posY == 1)
             {
@@ -665,7 +665,7 @@ public class GameGrid : MonoBehaviour
             if(Player.posY == 0)
             {
                 Player.objRef.GetComponent<Image>().sprite = MinerDead;
-                audio.PlaySound(SoundGroup.Die);
+                audioScript.PlaySound(SoundGroup.Die);
             }
 
             yield return new WaitForSeconds(.2f);
@@ -677,7 +677,7 @@ public class GameGrid : MonoBehaviour
     {
         IntroPlaying = true;
         yield return new WaitForSeconds(.3f);
-        audio.PlayMusic("Intro");
+        audioScript.PlayMusic("Intro");
         yield return new WaitForSeconds(1.5f);
         IntroPlaying = false;
     }
