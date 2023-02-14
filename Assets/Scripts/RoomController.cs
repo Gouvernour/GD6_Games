@@ -133,6 +133,7 @@ public class RoomController : MonoBehaviour
     {
         if(scenes.Count == 0)
         {
+            mazeRooms = MazeSupplementAudio.instance;
             foreach (string scene in mazeRooms.BirdsRooms)
                 scenes.Add(scene);
             foreach (string scene in mazeRooms.WaterRooms)
@@ -258,6 +259,7 @@ public class RoomController : MonoBehaviour
         {
             if(scenes.Count == 0)
             {
+                mazeRooms = MazeSupplementAudio.instance;
                 foreach (string scene in mazeRooms.BirdsRooms)
                     scenes.Add(scene);
                 foreach (string scene in mazeRooms.WaterRooms)
