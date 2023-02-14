@@ -672,6 +672,14 @@ MonoBehaviour:
   Down: 0
   exitDirection: 0
   hasExitDirection: 0
+  X: 0
+  Y: 0
+  sceneName: Room_1
+  Walls: {fileID: 5002552372562604432}
+  SafeTiles: {fileID: 5002552373327428569}
+  AlllGround: {fileID: 5002552371540595054}
+  DangerTile: {fileID: 5002552371285663294}
+  Doors: {fileID: 7379099188667807263}
 --- !u!1001 &7983121741843878686
 PrefabInstance:
   m_ObjectHideFlags: 0

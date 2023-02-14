@@ -19,9 +19,9 @@ public class Player : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            HP = MAXHP;
         }else
             Destroy(gameObject);
-        HP = MAXHP;
     }
 
     public void TakeDamage(int dmg)
@@ -33,7 +33,15 @@ public class Player : MonoBehaviour
         if(HP <= 0)
         {
             //Game Over
+            InputManager.instance.Dead = true;
         }
+    }
+
+    public void ManualWon()
+    {
+        Camera.main.enabled = false;
+        AudioManager.instance.PlaySound(SoundGroup.CantDig);
+        InputManager.instance.Dead = true;
     }
 
     public void Regenerate(int heal)

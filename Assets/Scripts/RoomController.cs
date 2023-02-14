@@ -25,6 +25,7 @@ public class RoomController : MonoBehaviour
     [SerializeField]
     Vector2Int currentlocation = new Vector2Int();
 
+    [SerializeField]
     private List<string> scenes = new List<string>();
     public static RoomController instance;
 
@@ -35,24 +36,34 @@ public class RoomController : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
             currentlocation.x = 0;
             currentlocation.y = 0;
             print(currentlocation);
+            mazeRooms = MazeSupplementAudio.instance;
+            foreach (string scene in mazeRooms.BirdsRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.WaterRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.WindRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.NoAmbianceRooms)
+                scenes.Add(scene);
+            transform.SetParent(null);
+            DontDestroyOnLoad(gameObject);
         }
     }
 
     private void Start()
     {
-        mazeRooms = MazeSupplementAudio.instance;
-        foreach(string scene in mazeRooms.BirdsRooms)
-            scenes.Add(scene);
-        foreach(string scene in mazeRooms.WaterRooms)
-            scenes.Add(scene);
-        foreach(string scene in mazeRooms.WindRooms)
-            scenes.Add(scene);
-        foreach(string scene in mazeRooms.NoAmbianceRooms)
-            scenes.Add(scene);
+        //mazeRooms = MazeSupplementAudio.instance;
+        //foreach(string scene in mazeRooms.BirdsRooms)
+        //    scenes.Add(scene);
+        //foreach(string scene in mazeRooms.WaterRooms)
+        //    scenes.Add(scene);
+        //foreach(string scene in mazeRooms.WindRooms)
+        //    scenes.Add(scene);
+        //foreach(string scene in mazeRooms.NoAmbianceRooms)
+        //    scenes.Add(scene);
 
     }
 
@@ -82,22 +93,52 @@ public class RoomController : MonoBehaviour
             if(currentlocation == piece.Key)
             {
                 currentRoom = piece.Value;
+                foreach (string scene in mazeRooms.BirdsRooms)
+                {
+                    if(scene == piece.Value.sceneName)
+                    {
+                        AudioManager.instance.PlayMusic("Birds");
+                    }
+                }
+                foreach (string scene in mazeRooms.WaterRooms)
+                {
+                    if (scene == piece.Value.sceneName)
+                    {
+                        AudioManager.instance.PlayMusic("Water");
+                    }
+                }
+                foreach (string scene in mazeRooms.WindRooms)
+                {
+                    if (scene == piece.Value.sceneName)
+                    {
+                        AudioManager.instance.PlayMusic("Wind");
+                    }
+                }
+                foreach (string scene in mazeRooms.NoAmbianceRooms)
+                {
+                    if (scene == piece.Value.sceneName)
+                    {
+                        AudioManager.instance.StopMusic();
+                    }
+                }
                 StartCoroutine(SpawningRooms());
                 return piece.Value;
             }
         }
-        return null;
         print("Now this should not have happened");
+        return null;
     }
     string AddingScene;
     public void LoadedRoom(RoomInfo roomDetails)
     {
+        print(map.Count + "MapCount");
         if(map.Count == 0)
         {
             roomDetails.X = currentlocation.x;
             roomDetails.Y = currentlocation.y;
-            roomDetails.sceneName = AddingScene;
+            roomDetails.sceneName = "Room_1";
             map.Add(currentlocation, roomDetails);
+            print(map.Count + "MapCount");
             loadingroom = false;
             currentRoom = roomDetails;
             incomingDir = ExitDirection.None;
@@ -204,6 +245,7 @@ public class RoomController : MonoBehaviour
             }
         }else
         {
+            print(scenes.Count + "sceneCount");
             int index = Random.Range(0, scenes.Count);
             AddingScene = scenes[index];
             SceneManager.LoadScene(scenes[index], LoadSceneMode.Additive);
@@ -272,5 +314,48 @@ public class RoomController : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void StartTime()
+    {
+        StartCoroutine(timeRunning());
+        StartCoroutine(gameTimer());
+    }
+    public void ResetTime()
+    {
+        StopAllCoroutines();
+        StartCoroutine(gameTimer());
+        StartCoroutine(timeRunning());
+    }
+    float timeToMove = 7f;
+    public IEnumerator timeRunning()
+    {
+        yield return new WaitForSeconds(timeToMove);
+        Player.instance.TakeDamage(1);
+    }
+    public float Timeleft = 180;
+    float RoundTime = 180;
+    public IEnumerator gameTimer()
+    {
+        while(Timeleft > 0)
+        {
+            Timeleft -= Time.deltaTime;
+            print("RunningTimer");
+            yield return null;
+        }
+        //End Game
+        Player.instance.ManualWon();
+        Timeleft = RoundTime;
+        AudioManager.instance.StopSFX(SoundGroup.Misc);
+        StopAllCoroutines();
+    }
+
+    public void ReloadGame()
+    {
+        map.Clear();
+        RoomsUnused.Clear();
+        StopAllCoroutines();
+        Timeleft = RoundTime;
+        SceneManager.LoadScene("IDNRM", LoadSceneMode.Single);
     }
 }

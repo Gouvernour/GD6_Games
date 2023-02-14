@@ -248,24 +248,43 @@ public class AudioManager : MonoBehaviour
     //    }
     //}
     //
-    //public void StopSFX(List<Sound> soundType)
-    //{
-    //    
-    //    foreach (Sound s in soundType)
-    //    {
-    //        if (s != null)
-    //            s.source.Stop();
-    //    }
-    //}
-    //
-    //public void StopMusic()
-    //{
-    //    foreach (Sound s in music)
-    //    {
-    //        s.source.Stop();
-    //        Debug.Log("Sound Stopped");
-    //    }
-    //}
+    public void StopSFX(SoundGroup name)
+    {
+        foreach (KeyValuePair<SoundGroup, List<Sound>> s in Sounds)
+        {
+            if (name == s.Key)
+            {
+                List<Sound> sounds;
+                if (Sounds.TryGetValue(name, out sounds))
+                {
+                    foreach (Sound a in sounds)
+                    {
+                        a.source.Stop();
+                        Debug.Log("Sound Stopped");
+                    }
+                }
+            }
+        }
+    }
+    
+    public void StopMusic()
+    {
+        foreach (KeyValuePair<SoundGroup, List<Sound>> s in Sounds)
+        {
+            if (s.Key == SoundGroup.Music)
+            {
+                List<Sound> sounds;
+                if (Sounds.TryGetValue(SoundGroup.Music, out sounds))
+                {
+                    foreach (Sound a in sounds)
+                    {
+                        a.source.Stop();
+                        Debug.Log("Sound Stopped");
+                    }
+                }
+            }
+        }
+    }
     //
     //void PlaySound(List<Sound> SoundList)     //name should be the first one in order of the list
     //{
