@@ -131,6 +131,18 @@ public class RoomController : MonoBehaviour
     string AddingScene;
     public void LoadedRoom(RoomInfo roomDetails)
     {
+        if(scenes.Count == 0)
+        {
+            mazeRooms = MazeSupplementAudio.instance;
+            foreach (string scene in mazeRooms.BirdsRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.WaterRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.WindRooms)
+                scenes.Add(scene);
+            foreach (string scene in mazeRooms.NoAmbianceRooms)
+                scenes.Add(scene);
+        }
         print(map.Count + "MapCount");
         if(map.Count == 0)
         {
@@ -245,6 +257,18 @@ public class RoomController : MonoBehaviour
             }
         }else
         {
+            if(scenes.Count == 0)
+            {
+                mazeRooms = MazeSupplementAudio.instance;
+                foreach (string scene in mazeRooms.BirdsRooms)
+                    scenes.Add(scene);
+                foreach (string scene in mazeRooms.WaterRooms)
+                    scenes.Add(scene);
+                foreach (string scene in mazeRooms.WindRooms)
+                    scenes.Add(scene);
+                foreach (string scene in mazeRooms.NoAmbianceRooms)
+                    scenes.Add(scene);
+            }
             print(scenes.Count + "sceneCount");
             int index = Random.Range(0, scenes.Count);
             AddingScene = scenes[index];
@@ -274,34 +298,42 @@ public class RoomController : MonoBehaviour
             switch (roomsCreated)
             {
                 case 0:
-                    currentlocation.x = currRoomLocation.x + 1;
                     roomsCreated++;
+                    if (currentRoom.exitDirection == ExitDirection.Right)       //Skip creating room if direction is exit
+                        break;
+                    currentlocation.x = currRoomLocation.x + 1;
                     loadingroom = true;
                     incomingDir = ExitDirection.Left;
                     newRoomDirection = ExitDirection.Right;
                     GetRoom();
                     break;
                 case 1:
+                    roomsCreated++;
+                    if (currentRoom.exitDirection == ExitDirection.Left)       //Skip creating room if direction is exit
+                        break;
                     currentlocation.x = currRoomLocation.x - 1;
                     incomingDir = ExitDirection.Right;
                     newRoomDirection = ExitDirection.Left;
-                    roomsCreated++;
                     loadingroom = true;
                     GetRoom();
                     break;
                 case 2:
+                    roomsCreated++;
+                    if (currentRoom.exitDirection == ExitDirection.Up)       //Skip creating room if direction is exit
+                        break;
                     currentlocation.y = currRoomLocation.y + 1;
                     incomingDir = ExitDirection.Down;
                     newRoomDirection = ExitDirection.Up;
-                    roomsCreated++;
                     loadingroom = true;
                     GetRoom();
                     break;
                 case 3:
+                    roomsCreated++;
+                    if (currentRoom.exitDirection == ExitDirection.Down)       //Skip creating room if direction is exit
+                        break;
                     currentlocation.y = currRoomLocation.y - 1;
                     incomingDir = ExitDirection.Up;
                     newRoomDirection = ExitDirection.Down;
-                    roomsCreated++;
                     loadingroom = true;
                     GetRoom();
                     break;
@@ -333,8 +365,8 @@ public class RoomController : MonoBehaviour
         yield return new WaitForSeconds(timeToMove);
         Player.instance.TakeDamage(1);
     }
-    public float Timeleft = 180;
-    float RoundTime = 180;
+    public float Timeleft = 300;
+    float RoundTime = 300;
     public IEnumerator gameTimer()
     {
         while(Timeleft > 0)
