@@ -234,6 +234,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1022431193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4765772874581582569, guid: b811c4f4a82921b428c58ad4b09d5f3c, type: 3}
+  m_PrefabInstance: {fileID: 4765772873690018798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1022431200
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022431193}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4964207916f56b8479364d38fd33f12a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1879507400
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +428,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4765772874581582565, guid: b811c4f4a82921b428c58ad4b09d5f3c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: be2db1ca8f14d8148b7739fadd59e4e0, type: 3}
     - target: {fileID: 4765772874581582569, guid: b811c4f4a82921b428c58ad4b09d5f3c, type: 3}
       propertyPath: m_Name
       value: Froggy (1)
