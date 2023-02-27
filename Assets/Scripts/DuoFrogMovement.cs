@@ -6,6 +6,7 @@ public class DuoFrogMovement : MonoBehaviour
 {
     [SerializeField] public bool Active = false;
     [SerializeField] bool Charging = false;
+    [SerializeField] bool falling = false;
     [SerializeField] Rigidbody2D frog;
 
     [SerializeField] float maxPower = 10;
@@ -63,9 +64,16 @@ public class DuoFrogMovement : MonoBehaviour
         if (Active && frog.velocity.y < 0)
         {
             anim.SetBool("Active", true);
+            //anim.SetBool("Grounded", true);
+            
+            //anim.SetBool("Charge", false);
+            falling = true;
+        }
+        if(falling == true && frog.velocity.y == 0)
+        {
             anim.SetBool("Grounded", true);
             anim.SetBool("Jump", false);
-            //anim.SetBool("Charge", false);
+            falling = false;
         }
         frog.gravityScale = 1;
         if(Input.GetKeyDown(KeyCode.D) && !Charging && frog.velocity.y == 0)
