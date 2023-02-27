@@ -60,6 +60,13 @@ public class DuoFrogMovement : MonoBehaviour
         {
             anim.SetBool("Active", true);
         }
+        if (Active && frog.velocity.y < 0)
+        {
+            anim.SetBool("Active", true);
+            anim.SetBool("Grounded", true);
+            anim.SetBool("Jump", false);
+            //anim.SetBool("Charge", false);
+        }
         frog.gravityScale = 1;
         if(Input.GetKeyDown(KeyCode.D) && !Charging && frog.velocity.y == 0)
         {
@@ -102,13 +109,7 @@ public class DuoFrogMovement : MonoBehaviour
             //anim.SetBool("Charge", false);
             StopLick();
         }
-        if(Active && frog.velocity.y == 0)
-        {
-            anim.SetBool("Active", true);
-            anim.SetBool("Grounded", true);
-            //anim.SetBool("Jump", false);
-            //anim.SetBool("Charge", false);
-        }
+        
         anim.SetBool("Active", true);
     }
 

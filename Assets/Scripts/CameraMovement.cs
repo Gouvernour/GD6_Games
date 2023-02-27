@@ -25,10 +25,10 @@ public class CameraMovement : MonoBehaviour
 
         if(p1)
         {
-            cam.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player1.transform.position.x, transform.position.y, -10),5 * Time.deltaTime);
+            cam.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player1.transform.position.x, player1.transform.position.y, -10),5 * Time.deltaTime);
         }else
         {
-            cam.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player2.transform.position.x, transform.position.y, -10),5 * Time.deltaTime);
+            cam.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player2.transform.position.x, player2.transform.position.y, -10),5 * Time.deltaTime);
 
         }
     }
