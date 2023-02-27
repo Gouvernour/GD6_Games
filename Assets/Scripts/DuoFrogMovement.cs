@@ -65,7 +65,7 @@ public class DuoFrogMovement : MonoBehaviour
         {
             anim.SetBool("Active", true);
             //anim.SetBool("Grounded", true);
-            
+            anim.SetBool("Falling", true);
             //anim.SetBool("Charge", false);
             falling = true;
         }
