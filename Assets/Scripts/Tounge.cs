@@ -53,6 +53,7 @@ public class Tounge : MonoBehaviour
         {
             done = true;
             Lastnode.GetComponent<HingeJoint2D>().connectedBody = ActivePlayer.GetComponent<Rigidbody2D>();
+            AudioManager.instance.PlaySound(SoundGroup.Move);
         }
     }
 

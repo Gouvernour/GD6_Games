@@ -7,6 +7,7 @@ public class DuoFrogMovement : MonoBehaviour
     [SerializeField] public bool Active = false;
     [SerializeField] bool Charging = false;
     [SerializeField] bool falling = false;
+    [SerializeField] bool Player1 = false;
     [SerializeField] Rigidbody2D frog;
 
     [SerializeField] float maxPower = 10;
@@ -19,6 +20,8 @@ public class DuoFrogMovement : MonoBehaviour
     public GameObject OtherFrog;
     void Start()
     {
+        if(Active)
+            Player1 = true;
         //anim.SetBool("Active", true);
         if(Active)
         {
@@ -47,6 +50,7 @@ public class DuoFrogMovement : MonoBehaviour
             { 
                 frog.bodyType = RigidbodyType2D.Kinematic;
                 frog.velocity = Vector3.zero;
+                AudioManager.instance.PlaySound(SoundGroup.CantDig);
                 anim.SetBool("Active", false);
             }
 
@@ -65,15 +69,17 @@ public class DuoFrogMovement : MonoBehaviour
         {
             anim.SetBool("Active", true);
             //anim.SetBool("Grounded", true);
-            
             //anim.SetBool("Charge", false);
             falling = true;
+            anim.SetBool("Falling", true);
         }
         if(falling == true && frog.velocity.y == 0)
         {
             anim.SetBool("Grounded", true);
             anim.SetBool("Jump", false);
             falling = false;
+            AudioManager.instance.PlaySound(SoundGroup.NextLevel);
+            anim.SetBool("Falling", false);
         }
         frog.gravityScale = 1;
         if(Input.GetKeyDown(KeyCode.D) && !Charging && frog.velocity.y == 0)
@@ -98,6 +104,10 @@ public class DuoFrogMovement : MonoBehaviour
             anim.SetBool("Jump", true);
             anim.SetBool("Grounded", false);
             anim.SetBool("Charge", false);
+            if(Player1)
+                AudioManager.instance.PlaySound(SoundGroup.Jump, PitchVersion.First);
+            else
+                AudioManager.instance.PlaySound(SoundGroup.Jump, PitchVersion.Second);
         }
         if(Input.GetKeyUp(KeyCode.A) && Charging)
         {
@@ -105,15 +115,21 @@ public class DuoFrogMovement : MonoBehaviour
             anim.SetBool("Jump", true);
             anim.SetBool("Grounded", false);
             anim.SetBool("Charge", false);
+            if (Player1)
+                AudioManager.instance.PlaySound(SoundGroup.Jump, PitchVersion.First);
+            else
+                AudioManager.instance.PlaySound(SoundGroup.Jump, PitchVersion.Second);
         }
         if(Input.GetMouseButtonDown(0))
         {
             anim.SetBool("Lick", true);
+            AudioManager.instance.PlaySound(SoundGroup.AcceptButton);
             //anim.SetBool("Charge", false);
             Lick();
         }if(Input.GetMouseButtonUp(0))
         {
             anim.SetBool("Lick", false);
+            AudioManager.instance.PlaySound(SoundGroup.MovingButton);
             //anim.SetBool("Charge", false);
             StopLick();
         }
