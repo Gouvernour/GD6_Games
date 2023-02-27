@@ -56,6 +56,9 @@ public class DuoFrogMovement : MonoBehaviour
             anim.SetBool("Active", false);
             frog.gravityScale = 0;
             return;
+        }else
+        {
+            anim.SetBool("Active", true);
         }
         frog.gravityScale = 1;
         if(Input.GetKeyDown(KeyCode.D) && !Charging && frog.velocity.y == 0)
@@ -106,6 +109,7 @@ public class DuoFrogMovement : MonoBehaviour
             //anim.SetBool("Jump", false);
             //anim.SetBool("Charge", false);
         }
+        anim.SetBool("Active", true);
     }
 
     void Lick()
