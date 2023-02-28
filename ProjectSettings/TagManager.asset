@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Frog2
   - Frog1
+  - Death
   layers:
   - Default
   - TransparentFX
