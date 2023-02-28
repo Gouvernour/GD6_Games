@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 378057391
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: be2db1ca8f14d8148b7739fadd59e4e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,6 +164,7 @@ MonoBehaviour:
   falling: 0
   Player1: 0
   frog: {fileID: 4765772874581582567}
+  lastGround: {x: 0, y: 0, z: 0}
   maxPower: 300
   currCharge: 0
   BuildUpSpeed: 150

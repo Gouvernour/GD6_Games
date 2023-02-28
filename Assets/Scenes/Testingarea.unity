@@ -2061,14 +2061,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Froggy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6475981564357205297, guid: b811c4f4a82921b428c58ad4b09d5f3c, type: 3}
-      propertyPath: Audio.Array.data[0].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475981564357205297, guid: b811c4f4a82921b428c58ad4b09d5f3c, type: 3}
-      propertyPath: Audio.Array.data[0].Manualpitch
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b811c4f4a82921b428c58ad4b09d5f3c, type: 3}
 --- !u!1001 &5715655113318428979
