@@ -10,6 +10,8 @@ public class DuoFrogMovement : MonoBehaviour
     [SerializeField] bool Player1 = false;
     [SerializeField] Rigidbody2D frog;
 
+    [SerializeField] Vector3 lastGround = new Vector3();
+
     [SerializeField] float maxPower = 10;
     [SerializeField] float currCharge = 0;
     [SerializeField] float BuildUpSpeed = 150;
@@ -33,6 +35,7 @@ public class DuoFrogMovement : MonoBehaviour
             OtherFrog = GameObject.FindWithTag("Frog1");
 
         }
+        lastGround = transform.position;
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class DuoFrogMovement : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Space))
         {
+            StopLick();
             Active = !Active;
             if(Active)
             {
@@ -71,7 +75,7 @@ public class DuoFrogMovement : MonoBehaviour
             //anim.SetBool("Grounded", true);
             //anim.SetBool("Charge", false);
             falling = true;
-            anim.SetBool("Falling", true);
+            //anim.SetBool("Falling", true);
         }
         if(falling == true && frog.velocity.y == 0)
         {
@@ -79,7 +83,8 @@ public class DuoFrogMovement : MonoBehaviour
             anim.SetBool("Jump", false);
             falling = false;
             AudioManager.instance.PlaySound(SoundGroup.NextLevel);
-            anim.SetBool("Falling", false);
+            lastGround = transform.position;
+            //anim.SetBool("Falling", false);
         }
         frog.gravityScale = 1;
         if(Input.GetKeyDown(KeyCode.D) && !Charging && frog.velocity.y == 0)
@@ -137,6 +142,23 @@ public class DuoFrogMovement : MonoBehaviour
         anim.SetBool("Active", true);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Death")
+        {
+            StartCoroutine(Died());
+        }
+    }
+
+    IEnumerator Died()
+    {
+        AudioManager.instance.PlaySound(SoundGroup.Die);
+        yield return new WaitForSeconds(1.2f);
+        AudioManager.instance.PlaySound(SoundGroup.Misc);
+        transform.position = lastGround;
+        StopLick();
+    }
+
     void Lick()
     {
         CurrTounge = Instantiate(Tounge, transform.position, Quaternion.identity);
@@ -146,7 +168,8 @@ public class DuoFrogMovement : MonoBehaviour
     
     void StopLick()
     {
-        Destroy(CurrTounge);
+        if(CurrTounge != null)
+            Destroy(CurrTounge);
     }
 
     IEnumerator ChargingJump(int multiplier)

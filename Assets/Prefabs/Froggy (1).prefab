@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4765772874581582566}
   - component: {fileID: 4765772874581582563}
   - component: {fileID: 3727290760101434614}
-  - component: {fileID: 6475981564357205297}
   m_Layer: 0
   m_Name: Froggy (1)
   m_TagString: Frog2
@@ -76,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 378057391
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: be2db1ca8f14d8148b7739fadd59e4e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,6 +163,7 @@ MonoBehaviour:
   falling: 0
   Player1: 0
   frog: {fileID: 4765772874581582567}
+  lastGround: {x: 0, y: 0, z: 0}
   maxPower: 300
   currCharge: 0
   BuildUpSpeed: 150
@@ -191,91 +191,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6475981564357205297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4765772874581582569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 546010ca6d345564aaa60b3c9a27842b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MasterMixer: {fileID: 24300002, guid: 41ada137662606945ad87fa3d296b678, type: 2}
-  SFXMixer: {fileID: 937221649188080343, guid: 41ada137662606945ad87fa3d296b678, type: 2}
-  MusicMixer: {fileID: 937221649188080343, guid: 41ada137662606945ad87fa3d296b678, type: 2}
-  Audio:
-  - name: Land
-    group: 4
-    pitch: 0
-    clip: {fileID: 8300000, guid: 6f889afd9b07e8e418b6ccadd23ae31e, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Death
-    group: 5
-    pitch: 0
-    clip: {fileID: 8300000, guid: 89f5737371008ac4d96eca4c814019a9, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Freeze
-    group: 2
-    pitch: 0
-    clip: {fileID: 8300000, guid: b7cedef8a4a8c61418e0a3f67e2a12b4, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Jump
-    group: 0
-    pitch: 0
-    clip: {fileID: 8300000, guid: cb268e0fc4e4fb240a301b6f3758a154, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Jump2
-    group: 0
-    pitch: 1
-    clip: {fileID: 8300000, guid: 2a05ce20b8ca840499d81eea31cae078, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Release
-    group: 10
-    pitch: 0
-    clip: {fileID: 8300000, guid: 2300f4abedc691a40971b1f17a57426a, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Respawn
-    group: 13
-    pitch: 0
-    clip: {fileID: 8300000, guid: 1b228f76e5eda974ab3802dc77de62d8, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Swing
-    group: 11
-    pitch: 0
-    clip: {fileID: 8300000, guid: 4afe24d717213974eb8c3761c36d499f, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Latch
-    group: 3
-    pitch: 0
-    clip: {fileID: 8300000, guid: 34784bbe66b64ff41a8cd7e5197a8583, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
