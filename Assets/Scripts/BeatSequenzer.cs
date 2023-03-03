@@ -14,12 +14,13 @@ public class Beat
 [System.Serializable]
 public class Sequence
 {
-    public string id;
+    public string tag;
+    public int id;
     public Beat[] beats = new Beat[4];
 }
 
 public class BeatSequenzer : MonoBehaviour
 {
     [SerializeField] List<Sequence> Sequence;
-    [SerializeField] List<string> ID_ORDER;
+    [SerializeField] List<int> ID_ORDER;
 }
