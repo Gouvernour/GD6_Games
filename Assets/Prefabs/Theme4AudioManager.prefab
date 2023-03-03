@@ -47,4 +47,12 @@ MonoBehaviour:
   MasterMixer: {fileID: 24300002, guid: 5c6dbe4a4baf2ff45b4e82798a926837, type: 2}
   SFXMixer: {fileID: 5784458061127255593, guid: 5c6dbe4a4baf2ff45b4e82798a926837, type: 2}
   MusicMixer: {fileID: -5725046930521950150, guid: 5c6dbe4a4baf2ff45b4e82798a926837, type: 2}
-  Audio: []
+  Audio:
+  - name: Tone
+    group: 13
+    pitch: 0
+    clip: {fileID: 8300000, guid: 3183f8c5d2b5efd41905bfb18925723e, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
+    source: {fileID: 0}

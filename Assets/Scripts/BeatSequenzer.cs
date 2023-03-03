@@ -21,15 +21,57 @@ public class Sequence
 
 public class BeatSequenzer : MonoBehaviour
 {
-    [SerializeField] List<Sequence> Sequence;
+    [SerializeField] List<Sequence> sequence;
     [SerializeField] List<int> ID_ORDER;
 
-    [SerializeField] int BPM = 92;
-    float Speed = 1;
+    [SerializeField] float BPM = 92;
+    public float Speed = 1;
+
+    private void Start()
+    {
+        Speed = 60 / BPM;
+        StartCoroutine(BeatNotes());
+    }
 
     IEnumerator BeatNotes()
     {
+        while(true)
+        {
+            
+            foreach(int id in ID_ORDER)
+            {
+                foreach(Sequence s in sequence)
+                {
+                    if(s.id == id)
+                    {
+                        foreach(Beat beat in s.beats)
+                        {
+                            if(beat.One == true)
+                            {
+                                print("One");
+                                AudioManager.instance.PlaySound(SoundGroup.Misc);
+                            }
+                            yield return new WaitForSecondsRealtime(Speed/4);
+                            if (beat.Two == true)
+                            {
+                                AudioManager.instance.PlaySound(SoundGroup.Misc);
+                            }
+                            yield return new WaitForSecondsRealtime(Speed/4);
+                            if (beat.Three == true)
+                            {
+                                AudioManager.instance.PlaySound(SoundGroup.Misc);
+                            }
+                            yield return new WaitForSecondsRealtime(Speed/4);
+                            if (beat.Four == true)
+                            {
+                                AudioManager.instance.PlaySound(SoundGroup.Misc);
+                            }
+                            yield return new WaitForSecondsRealtime(Speed/4);
+                        }
+                    }
+                }
+            }
 
-        yield return null;
+        }
     }
 }
