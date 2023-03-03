@@ -23,4 +23,13 @@ public class BeatSequenzer : MonoBehaviour
 {
     [SerializeField] List<Sequence> Sequence;
     [SerializeField] List<int> ID_ORDER;
+
+    [SerializeField] int BPM = 92;
+    float Speed = 1;
+
+    IEnumerator BeatNotes()
+    {
+
+        yield return null;
+    }
 }
