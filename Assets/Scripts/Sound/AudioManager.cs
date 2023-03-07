@@ -111,6 +111,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void SetMusicPitch(float value, string name)
+    {
+        if (Sounds.ContainsKey(SoundGroup.Music))
+        {
+            List<Sound> sounds;
+            if (Sounds.TryGetValue(SoundGroup.Music, out sounds))
+            {
+                Sound song = sounds.Find(x => x.name == name);
+                song.source.pitch = value;
+            }
+        }
+    }
+
     public void SetMusicVol(float value)    //Settings Change Music Volume
     {
         foreach (KeyValuePair<SoundGroup, List<Sound>> s in Sounds)

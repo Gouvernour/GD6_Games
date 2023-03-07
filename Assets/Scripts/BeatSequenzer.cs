@@ -1,27 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [System.Serializable]
 public class Beat
 {
+    
+    public string Takt;
+    public int indexEdit = 0;
     public bool One;
     public bool Two;
     public bool Three;
     public bool Four;
+
+
+
+    private void InsertArrayitem()
+    {
+        Beat newSequence = new Beat();
+        //beats.Insert(indexEdit, newSequence);
+        //newSequence.beats
+        //beats.Insert(indexEdit, newSequence);
+    }
+    
+    private void AddBeat()
+    {
+    
+    }
+    
+    private void SortIntArray()
+    {
+        //beats.Sort();
+    }
+    
+    private void removeIndex()
+    {
+    
+    }
 }
 
 [System.Serializable]
 public class Sequence
 {
     public string tag;
+
+    public Beat[] beats;
+    //[ContextMenuItem("remove IndexEdit index", "removeIndex")]
+    //[ContextMenuItem("Insert new item at IndexEdit index", "InsertBeat")]
+    //[ContextMenuItem("Insert new item at end", "AddBeat")]
+    //[ContextMenuItem("Sort array", "SortIntArray")]
+    //[SerializeReference]
     public int id;
     public float S_BPM = 60;
-    public Beat[] beats = new Beat[4];
+
+    
 }
 
 public class BeatSequenzer : MonoBehaviour
 {
+    
+
     [SerializeField] List<Sequence> sequence;
     [SerializeField] List<int> ID_ORDER;
 
@@ -78,4 +117,6 @@ public class BeatSequenzer : MonoBehaviour
         }
         yield return null;
     }
+
+    
 }
