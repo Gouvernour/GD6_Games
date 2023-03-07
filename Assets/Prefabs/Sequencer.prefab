@@ -45,9 +45,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequence:
-  - tag: Intro
+  - tag: Intro 1
     id: 0
     S_BPM: 93
+    beats:
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+  - tag: Intro 2
+    id: 4
+    S_BPM: 92
+    beats:
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+  - tag: Small Chorus
+    id: 1
+    S_BPM: 92
     beats:
     - One: 1
       Two: 0
@@ -111,8 +187,348 @@ MonoBehaviour:
       Four: 0
     - One: 1
       Two: 0
+      Three: 0
+      Four: 0
+  - tag: Verse 1
+    id: 2
+    S_BPM: 92
+    beats:
+    - One: 1
+      Two: 0
       Three: 1
       Four: 0
-  ID_ORDER: 00000000
-  BPM: 93
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+  - tag: Verse 2
+    id: 3
+    S_BPM: 92
+    beats:
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+  - tag: Chorus 1
+    id: 5
+    S_BPM: 92
+    beats:
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+  - tag: Bridge 1
+    id: 7
+    S_BPM: 92
+    beats:
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+  - tag: Chorus 2
+    id: 6
+    S_BPM: 92
+    beats:
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+  ID_ORDER: 0000000004000000010000000200000003000000050000000600000003000000020000000500000006000000
+  BPM: 92
   Speed: 1
