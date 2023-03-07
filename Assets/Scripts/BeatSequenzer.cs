@@ -52,7 +52,6 @@ public class BeatSequenzer : MonoBehaviour
                         {
                             if(beat.One == true)
                             {
-                                print("One");
                                 AudioManager.instance.PlaySound(SoundGroup.Misc);
                             }
                             yield return new WaitForSecondsRealtime(Speed/4);

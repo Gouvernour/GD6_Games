@@ -5,10 +5,10 @@ using UnityEngine.Audio;
 
 public class BeatPlatform : MonoBehaviour
 {
-    float[] Samples;
+    [SerializeField] float[] Samples = new float[512];
     void Start()
     {
-        StartCoroutine(PrintData());
+        //StartCoroutine(PrintData());
     }
 
     // Update is called once per frame
@@ -17,10 +17,18 @@ public class BeatPlatform : MonoBehaviour
         
     }
 
-    IEnumerator PrintData()
+    IEnumerator PrintData(AudioSource source)
     {
-        yield return null;
-        AudioListener.GetOutputData(Samples, AudioManager.instance.MusicMixer.GetInstanceID());
-        print(Samples.Length);
+        float totalInput = 0;
+        while(true)
+        {
+            yield return null;
+            foreach(float sample in Samples)
+            {
+                totalInput += sample;
+            }
+            print(totalInput);
+            totalInput = 0;
+        }
     }
 }
