@@ -16,6 +16,7 @@ public class Sequence
 {
     public string tag;
     public int id;
+    public float S_BPM = 60;
     public Beat[] beats = new Beat[4];
 }
 
@@ -35,6 +36,7 @@ public class BeatSequenzer : MonoBehaviour
 
     IEnumerator BeatNotes()
     {
+        
         while(true)
         {
             if (ID_ORDER.Count == 1 || sequence.Count == 0)
@@ -45,6 +47,7 @@ public class BeatSequenzer : MonoBehaviour
                 {
                     if(s.id == id)
                     {
+                        Speed = 60 / s.S_BPM;
                         foreach(Beat beat in s.beats)
                         {
                             if(beat.One == true)

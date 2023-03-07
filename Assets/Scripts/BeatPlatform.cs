@@ -8,7 +8,7 @@ public class BeatPlatform : MonoBehaviour
     float[] Samples;
     void Start()
     {
-        
+        StartCoroutine(PrintData());
     }
 
     // Update is called once per frame
@@ -21,5 +21,6 @@ public class BeatPlatform : MonoBehaviour
     {
         yield return null;
         AudioListener.GetOutputData(Samples, AudioManager.instance.MusicMixer.GetInstanceID());
+        print(Samples.Length);
     }
 }
