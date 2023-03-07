@@ -37,7 +37,8 @@ public class BeatSequenzer : MonoBehaviour
     {
         while(true)
         {
-            
+            if (ID_ORDER.Count == 1 || sequence.Count == 0)
+                break;
             foreach(int id in ID_ORDER)
             {
                 foreach(Sequence s in sequence)
@@ -73,5 +74,6 @@ public class BeatSequenzer : MonoBehaviour
             }
 
         }
+        yield return null;
     }
 }
