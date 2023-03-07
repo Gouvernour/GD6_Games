@@ -39,7 +39,7 @@ public class BeatSequenzer : MonoBehaviour
         
         while(true)
         {
-            if (ID_ORDER.Count == 1 || sequence.Count == 0)
+            if (ID_ORDER.Count == 0 || sequence.Count == 0)
                 break;
             foreach(int id in ID_ORDER)
             {
