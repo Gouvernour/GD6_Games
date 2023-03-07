@@ -36,7 +36,7 @@ public class BeatSequenzer : MonoBehaviour
 
     IEnumerator BeatNotes()
     {
-        
+        AudioManager.instance.PlayMusic("TwoOfUs");
         while(true)
         {
             if (ID_ORDER.Count == 0 || sequence.Count == 0)
