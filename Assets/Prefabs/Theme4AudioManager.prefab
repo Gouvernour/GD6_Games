@@ -49,14 +49,6 @@ MonoBehaviour:
   SFXMixer: {fileID: 5784458061127255593, guid: 5c6dbe4a4baf2ff45b4e82798a926837, type: 2}
   MusicMixer: {fileID: -5725046930521950150, guid: 5c6dbe4a4baf2ff45b4e82798a926837, type: 2}
   Audio:
-  - name: Tone
-    group: 13
-    pitch: 0
-    clip: {fileID: 8300000, guid: 3183f8c5d2b5efd41905bfb18925723e, type: 3}
-    volume: 1
-    Manualpitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: TwoOfUs
     group: 8
     pitch: 0
@@ -64,6 +56,14 @@ MonoBehaviour:
     volume: 1
     Manualpitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: Tone
+    group: 13
+    pitch: 0
+    clip: {fileID: 8300000, guid: 3183f8c5d2b5efd41905bfb18925723e, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!114 &7863681089566731461
 MonoBehaviour:
@@ -590,3 +590,4 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  music: {fileID: 0}
