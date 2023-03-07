@@ -57,6 +57,14 @@ MonoBehaviour:
     Manualpitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: TwoOfUs
+    group: 8
+    pitch: 0
+    clip: {fileID: 8300000, guid: 544dac7898586cd43937685e49eaf044, type: 3}
+    volume: 1
+    Manualpitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!114 &7863681089566731461
 MonoBehaviour:
   m_ObjectHideFlags: 0

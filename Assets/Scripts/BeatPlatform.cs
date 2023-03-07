@@ -17,18 +17,20 @@ public class BeatPlatform : MonoBehaviour
         
     }
 
-    IEnumerator PrintData(AudioSource source)
-    {
-        float totalInput = 0;
-        while(true)
-        {
-            yield return null;
-            foreach(float sample in Samples)
-            {
-                totalInput += sample;
-            }
-            print(totalInput);
-            totalInput = 0;
-        }
-    }
+    //IEnumerator PrintData()
+    //{
+    //    AudioSource[] sources = AudioManager.instance.GetComponents<AudioSource>();
+    //    foreach
+    //    float totalInput = 0;
+    //    while(true)
+    //    {
+    //        yield return null;
+    //        foreach(float sample in Samples)
+    //        {
+    //            totalInput += sample;
+    //        }
+    //        print(totalInput);
+    //        totalInput = 0;
+    //    }
+    //}
 }
