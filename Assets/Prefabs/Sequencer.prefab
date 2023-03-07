@@ -123,7 +123,7 @@ MonoBehaviour:
       Four: 0
   - tag: Small Chorus
     id: 1
-    S_BPM: 92
+    S_BPM: 93
     beats:
     - One: 1
       Two: 0
@@ -243,9 +243,9 @@ MonoBehaviour:
       Four: 0
     - One: 1
       Two: 0
-      Three: 1
+      Three: 0
       Four: 0
-    - One: 1
+    - One: 0
       Two: 0
       Three: 0
       Four: 0
@@ -253,7 +253,7 @@ MonoBehaviour:
       Two: 0
       Three: 0
       Four: 0
-    - One: 1
+    - One: 0
       Two: 0
       Three: 0
       Four: 0
@@ -313,7 +313,7 @@ MonoBehaviour:
       Two: 0
       Three: 0
       Four: 0
-    - One: 1
+    - One: 0
       Two: 0
       Three: 0
       Four: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
       Two: 0
       Three: 0
       Four: 0
-    - One: 1
+    - One: 0
       Two: 0
       Three: 0
       Four: 0
@@ -393,8 +393,8 @@ MonoBehaviour:
       Two: 0
       Three: 0
       Four: 0
-  - tag: Bridge 1
-    id: 7
+  - tag: Chorus 2
+    id: 6
     S_BPM: 92
     beats:
     - One: 1
@@ -461,8 +461,8 @@ MonoBehaviour:
       Two: 0
       Three: 0
       Four: 0
-  - tag: Chorus 2
-    id: 6
+  - tag: Bridge 1
+    id: 7
     S_BPM: 92
     beats:
     - One: 1
