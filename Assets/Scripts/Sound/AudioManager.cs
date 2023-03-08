@@ -95,6 +95,84 @@ public class AudioManager : MonoBehaviour
         SetMasterVol(.5f);
     }
 
+    public void AddToSounds(Sound s, AudioSource source)
+    {
+        bool keyExist = Sounds.ContainsKey(s.group);
+        if (!keyExist)
+        {
+            Sounds.Add(s.group, new List<Sound>());
+        }
+        foreach (KeyValuePair<SoundGroup, List<Sound>> list in Sounds)
+        {
+            if (s.group == list.Key)
+            {
+                Debug.Log("Added sound " + s.name + " to the group " + s.group);
+                list.Value.Add(s);
+                break;
+            }
+        }
+        s.source = source;
+        s.source.clip = s.clip;
+        s.source.volume = s.volume;
+        if (s.volume < 0.0001f)
+        {
+            Debug.Log("Volume to low");
+            s.volume = 0.0001f;
+            s.source.volume = 0.0001f;
+        }
+        s.source.pitch = s.Manualpitch;
+        s.source.loop = s.loop;
+
+        string _OutputMixer = s.name;
+        try
+        {
+            if (s.group != SoundGroup.Music)
+            {
+                s.source.outputAudioMixerGroup = SFXMixer.audioMixer.FindMatchingGroups(_OutputMixer)[0];   //Requires submixer with the name of the Audio clip to exist
+                s.source.outputAudioMixerGroup.audioMixer.SetFloat(s.name, Mathf.Log10(s.source.volume) * 20);
+            }
+            else
+            {
+                s.source.outputAudioMixerGroup = MusicMixer.audioMixer.FindMatchingGroups(_OutputMixer)[0];   //Requires submixer with the name of the Audio clip to exist
+                s.source.outputAudioMixerGroup.audioMixer.SetFloat(s.name, Mathf.Log10(s.source.volume) * 20);
+            }
+        }
+        catch
+        {
+            if (s.group != SoundGroup.Music)
+            {
+                Debug.LogWarning("SubMixer of SFXMixer with the name " + s.name + " does not exist");
+                s.source.outputAudioMixerGroup = SFXMixer;
+                Debug.Log("AudioSource " + s.name + " is using the SFXMixer instead");
+            }
+            else
+            {
+                Debug.LogWarning("SubMixer of MusicMixer with the name " + s.name + " does not exist");
+                s.source.outputAudioMixerGroup = MusicMixer;
+                Debug.Log("AudioSource " + s.name + " is using the Musicixer instead");
+            }
+        }
+    }
+
+    public void RemoveFromSounds(Sound s, AudioSource source)
+    {
+        bool keyExist = Sounds.ContainsKey(s.group);
+        if (!keyExist)
+        {
+            Debug.LogError(s.name + " Does not exist in list");
+            return;
+        }
+        foreach (KeyValuePair<SoundGroup, List<Sound>> list in Sounds)
+        {
+            if (s.group == list.Key)
+            {
+                Debug.Log("Added sound " + s.name + " to the group " + s.group);
+                list.Value.Remove(s);
+                break;
+            }
+        }
+        Destroy(source);
+    }
 
     public void SetSFXVol(float value)  //Settings Change SFX Volume
     {
