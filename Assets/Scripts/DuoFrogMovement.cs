@@ -14,7 +14,7 @@ public class DuoFrogMovement : MonoBehaviour
 
     [SerializeField] float maxPower = 10;
     [SerializeField] float currCharge = 0;
-    [SerializeField] float BuildUpSpeed = 150;
+    //[SerializeField] float BuildUpSpeed = 150;
 
     [SerializeField] GameObject Tounge;
     [SerializeField] GameObject CurrTounge;
