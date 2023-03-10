@@ -10,9 +10,15 @@ public class BeatPlatform : MonoBehaviour
     [SerializeField] Sound music;
     [SerializeField] GameObject point;
     [SerializeField] List<float> sums = new List<float>();
+    [SerializeField] float multiplier = 1000;
+    float playerHeight = 1;
+    float HeightIncrease = 1.4f;
+    List<float> currentList = new List<float>();
+    List<GameObject> points = new List<GameObject>();
     void Start()
     {
         //StartCoroutine(PrintData());
+        SetPlayerHeight(GameObject.FindGameObjectWithTag("Player").transform.position.y);
     }
 
     // Update is called once per frame
@@ -20,8 +26,33 @@ public class BeatPlatform : MonoBehaviour
     {
         
     }
+    bool Effectplaying = false;
+
+    public void SetPlayerHeight(float height)
+    {
+        playerHeight = height;
+    }
+    public void EqualizeEffect()
+    {
+        foreach (GameObject point in points)
+            Destroy(point);
+        Effectplaying = true;
+        currentList = sums;
+        float height = playerHeight;
+        foreach (float pos in currentList)
+        {
+            GameObject newPoint = Instantiate(point, new Vector3(0, height), Quaternion.identity);
+            newPoint.GetComponent<Equalizer>().SetPoint(pos * multiplier, height);
+            points.Add(newPoint);
+            height += HeightIncrease;
+        }
+        Effectplaying = false;
+    }
+
     void OnAudioFilterRead(float[] data, int channels)
     {
+        if (Effectplaying)
+            return;
         float dataSum = 0;
         int index = 1;
         sums.Clear();
@@ -46,10 +77,10 @@ public class BeatPlatform : MonoBehaviour
         //    dataSum *= -1;
         foreach (float dat in sums)
         {
-            print(dat);
+            //print(dat);
         }
         //print(dataSum);
-        print("End of this tone");
+        //print("End of this tone");
     }
 
 
