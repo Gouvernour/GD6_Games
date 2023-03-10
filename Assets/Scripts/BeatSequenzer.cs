@@ -187,11 +187,13 @@ public class BeatSequenzer : MonoBehaviour
         
         while(currentTime <= beatTimes[beatTimes.Count-1])
         {
-            yield return new WaitForSecondsRealtime(beatTimes[currentBeat] - currentTime);
+            yield return new WaitForSeconds(beatTimes[currentBeat] - currentTime);
             currentTime = beatTimes[currentBeat];
             currentBeat++;
             AudioManager.instance.PlaySound(SoundGroup.Misc);
             eq.EqualizeEffect();
+            if (currentBeat >= beatTimes.Count)
+                break;
         }
         yield return null;
     }

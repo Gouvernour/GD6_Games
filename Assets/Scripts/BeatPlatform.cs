@@ -34,9 +34,9 @@ public class BeatPlatform : MonoBehaviour
     }
     public void EqualizeEffect()
     {
+        Effectplaying = true;
         foreach (GameObject point in points)
             Destroy(point);
-        Effectplaying = true;
         currentList = sums;
         float height = playerHeight;
         foreach (float pos in currentList)
