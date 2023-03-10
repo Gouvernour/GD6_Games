@@ -67,12 +67,14 @@ public class BeatSequenzer : MonoBehaviour
     [SerializeField] float BPM = 92;
     [SerializeField] float RewindSpeed = 2;
     public float Speed = 1;
+    BeatPlatform eq;
 
     private void Start()
     {
         Speed = 60 / BPM;
         SetTiming();
         //Setup beat from sequences
+        eq = GameObject.FindGameObjectWithTag("Equalizer").GetComponent<BeatPlatform>();
         AudioManager.instance.PlayMusic("TwoOfUs");
         StartCoroutine(BeatNotes());
     }
@@ -185,11 +187,11 @@ public class BeatSequenzer : MonoBehaviour
         
         while(currentTime <= beatTimes[beatTimes.Count-1])
         {
-            yield return new WaitForSeconds(beatTimes[currentBeat] - currentTime);
+            yield return new WaitForSecondsRealtime(beatTimes[currentBeat] - currentTime);
             currentTime = beatTimes[currentBeat];
             currentBeat++;
             AudioManager.instance.PlaySound(SoundGroup.Misc);
-
+            eq.EqualizeEffect();
         }
         yield return null;
     }
