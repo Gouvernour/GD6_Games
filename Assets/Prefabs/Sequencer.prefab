@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6362305440009195685}
   m_Layer: 0
   m_Name: Sequencer
-  m_TagString: Untagged
+  m_TagString: Equalizer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,5 +694,6 @@ MonoBehaviour:
     Manualpitch: 0
     loop: 0
     source: {fileID: 0}
-  point: {fileID: 0}
+  point: {fileID: 6012374097016532075, guid: 334f895b03411094b92537c7bdc321cc, type: 3}
   sums: []
+  multiplier: 10000
