@@ -5,9 +5,11 @@ using UnityEngine.Audio;
 
 public class BeatPlatform : MonoBehaviour
 {
-    [SerializeField] float[] Samples = new float[512];
+    float[] Samples = new float[512];
     float currentPitch = 1;
     [SerializeField] Sound music;
+    [SerializeField] GameObject point;
+    [SerializeField] List<float> sums = new List<float>();
     void Start()
     {
         //StartCoroutine(PrintData());
@@ -16,23 +18,38 @@ public class BeatPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.P))
-        {
-            if (currentPitch < 0)
-                currentPitch = 1;
-            else
-                currentPitch = -1.5f;
-            AudioManager.instance.SetMusicPitch(currentPitch, "TwoOfUs");
-        }
+        
     }
     void OnAudioFilterRead(float[] data, int channels)
     {
         float dataSum = 0;
+        int index = 1;
+        sums.Clear();
         foreach (float d in data)
-            dataSum += d / data.Length;
-        if (dataSum < 0)
-            dataSum *= -1;
-        print(dataSum);
+        {
+            float sum = 0;
+            if (d < 0)
+            {
+                sum = d * -1;
+            }
+            else
+                sum = d;
+            dataSum += sum / data.Length;
+            if(index%16 == 0)
+            {
+                sums.Add(dataSum);
+                dataSum = 0;
+            }
+            index++;
+        }
+        //if (dataSum < 0)
+        //    dataSum *= -1;
+        foreach (float dat in sums)
+        {
+            print(dat);
+        }
+        //print(dataSum);
+        print("End of this tone");
     }
 
 
