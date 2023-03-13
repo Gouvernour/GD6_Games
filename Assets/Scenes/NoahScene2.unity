@@ -205,7 +205,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
       propertyPath: sequence.Array.data[0].beats.Array.size
-      value: 4
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[0].One
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[0].Two
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[1].One
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[2].One
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[3].One
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
       propertyPath: sequence.Array.data[7].beats.Array.data[9].One
@@ -249,7 +269,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
       propertyPath: sequence.Array.data[0].beats.Array.data[0].Three
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[1].Three
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[2].Three
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[3].Three
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
       propertyPath: sequence.Array.data[7].beats.Array.data[9].Three
