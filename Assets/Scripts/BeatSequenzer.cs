@@ -153,7 +153,7 @@ public class BeatSequenzer : MonoBehaviour
         StartCoroutine(BeatNotes());
     }
 
-    [SerializeField] List<float> beatTimes = new List<float>();
+    [SerializeField] public List<float> beatTimes = new List<float>();
     void SetTiming()
     {
         float time = 0f;
