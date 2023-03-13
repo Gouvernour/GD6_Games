@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6362305440009195685}
   m_Layer: 0
   m_Name: Sequencer
-  m_TagString: Untagged
+  m_TagString: Equalizer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,31 +47,604 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequence:
-  - tag: Intro
+  - tag: Intro 1
     beats:
-    - Takt: 
+    - Takt: 0
       One: 1
       Two: 0
       Three: 0
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    id: 10
+    S_BPM: 96
+  - tag: Intro 2
+    beats:
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    id: 11
+    S_BPM: 94
+  - tag: Intro 3
+    beats:
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    id: 12
+    S_BPM: 96
+  - tag: Intro Chorus
+    beats:
+    - Takt: 0
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    id: 13
+    S_BPM: 94
+  - tag: Verse 1
+    beats:
+    - Takt: 1
+      One: 0
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    id: 3
+    S_BPM: 93
+  - tag: Verse 2
+    beats:
+    - Takt: 1
+      One: 0
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    id: 4
+    S_BPM: 93
+  - tag: Chorus
+    beats:
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
       Four: 1
-    - Takt: 
+    - Takt: 1
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 1
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 1
       One: 1
       Two: 0
       Three: 1
       Four: 0
-    - Takt: 
+    - Takt: 2
       One: 1
       Two: 0
       Three: 1
       Four: 0
-    - Takt: 
+    - Takt: 2
+      One: 0
+      Two: 1
+      Three: 0
+      Four: 1
+    - Takt: 2
+      One: 0
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - Takt: 3
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 3
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 1
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 1
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 1
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 5
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - Takt: 5
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 5
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 5
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 6
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 6
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 6
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 6
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 7
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - Takt: 7
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 7
+      One: 0
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 7
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 8
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 8
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 8
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 8
       One: 1
       Two: 1
       Three: 1
       Four: 1
-    id: 0
-    S_BPM: 93
-  ID_ORDER: 00000000
+    id: 5
+    S_BPM: 92
+  - tag: Bridge
+    beats:
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - Takt: 1
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 2
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - Takt: 2
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 1
+    - Takt: 3
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 3
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 3
+      One: 1
+      Two: 1
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 1
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 1
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    id: 21
+    S_BPM: 92
+  ID_ORDER: 0a0000000b0000000c0000000d00000003000000040000000500000004000000030000000500000015000000
   BPM: 93
   RewindSpeed: 2
   Speed: 1
@@ -122,3 +695,5 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   point: {fileID: 6012374097016532075, guid: 334f895b03411094b92537c7bdc321cc, type: 3}
+  sums: []
+  multiplier: 10000

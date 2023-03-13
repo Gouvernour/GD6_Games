@@ -7,6 +7,7 @@ TagManager:
   - Frog2
   - Frog1
   - Death
+  - Equalizer
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ public class Equalizer : MonoBehaviour
 {
     float y = 0;
     float x = 0;
-    Vector3 target = Vector3.zero;
+    [SerializeField] Vector3 target = Vector3.zero;
     void Start()
     {
         
@@ -15,12 +15,17 @@ public class Equalizer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3.MoveTowards(transform.position, target, 1000 * Time.deltaTime);
+        print("moving");
+        transform.localScale = new Vector3(target.x, 1, 1);
     }
     public void SetPoint(float Width, float Height)
     {
         y = Height;
         x = Width;
+        if (Width < 3)
+            x = 3;
+        if(Width > 10)
+            x = 10;
         target = new Vector3(x, y);
     }
 }
