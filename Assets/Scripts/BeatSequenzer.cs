@@ -86,6 +86,7 @@ public class BeatSequenzer : MonoBehaviour
     float timeRewind = 0;
     float currentSpeed = 1;
     int totalBeats = 0;
+    bool Jumping = false;
     private void Update()
     {
         
@@ -108,11 +109,19 @@ public class BeatSequenzer : MonoBehaviour
         }
         if(!isRewinding && hasStarted)
         {
-            if(currentTime > beatTimes[currentBeat] - 0.1f && currentTime < beatTimes[currentBeat] + 0.1f)
+            if (currentTime > beatTimes[currentBeat] - 0.3f && currentTime < beatTimes[currentBeat] - 0.1f && !Jumping)
+            {
+                RatMovement.instance1.Jump();
+                RatMovement.instance2.Jump();
+                TreeClimbCamera.instance.SetNewBeat();
+                Jumping = true;
+            }
+            if (currentTime > beatTimes[currentBeat] - 0.1f && currentTime < beatTimes[currentBeat] + 0.1f)
             {
                 AudioManager.instance.PlaySound(SoundGroup.Misc);
                 eq.EqualizeEffect();
                 currentBeat++;
+                Jumping = false;
             }
             currentTime += Time.deltaTime;
         }

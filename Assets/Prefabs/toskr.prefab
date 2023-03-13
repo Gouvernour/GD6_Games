@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4830552985123245696}
   - component: {fileID: 4830552985123245703}
   - component: {fileID: 4830552985123245702}
+  - component: {fileID: 6588123408915469294}
   m_Layer: 0
   m_Name: toskr
   m_TagString: Player
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 20
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -133,3 +134,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6588123408915469294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4830552985123245701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f985f25dad95a9a4289751ec6dc7a267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UP: 273
+  Body: {fileID: 4830552985123245703}
+  Force: 1500

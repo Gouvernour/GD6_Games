@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2476496699540411190}
   - component: {fileID: 2476496699540411191}
   - component: {fileID: 2476496699540411184}
+  - component: {fileID: 1079795043163006436}
   m_Layer: 0
   m_Name: Rata
   m_TagString: Player
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 20
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -133,3 +134,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1079795043163006436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476496699540411185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f985f25dad95a9a4289751ec6dc7a267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UP: 119
+  Body: {fileID: 2476496699540411191}
+  Force: 1500
