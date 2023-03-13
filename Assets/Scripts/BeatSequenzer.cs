@@ -59,7 +59,7 @@ public class Sequence
 
 public class BeatSequenzer : MonoBehaviour
 {
-    
+    public static BeatSequenzer instance;
 
     [SerializeField] List<Sequence> sequence;
     [SerializeField] List<int> ID_ORDER;
@@ -76,7 +76,8 @@ public class BeatSequenzer : MonoBehaviour
         //Setup beat from sequences
         eq = GameObject.FindGameObjectWithTag("Equalizer").GetComponent<BeatPlatform>();
         //StartCoroutine(WaitUntilStart());
-        
+        if (instance == null)
+            instance = this;
     }
     bool isRewinding = false;
     bool stoppedRewinding = false;
@@ -87,12 +88,7 @@ public class BeatSequenzer : MonoBehaviour
     int totalBeats = 0;
     private void Update()
     {
-        if(!hasStarted)
-        {
-            
-            hasStarted = true;
-            AudioManager.instance.PlayMusic("TwoOfUs");
-        }
+        
 
         if (Input.GetKeyUp(KeyCode.P))
         {
@@ -206,17 +202,17 @@ public class BeatSequenzer : MonoBehaviour
         yield return null;
         
         print("PlayingSong");
-        StartCoroutine(BeatNotes());
+        AudioManager.instance.PlayMusic("TwoOfUs");
+        //StartCoroutine(BeatNotes());
     }
 
     public float currentTime = 0;
     public int currentBeat = 0;
-    IEnumerator BeatNotes()
+    public IEnumerator BeatNotes()
     {
-        print("PlayingBeats");
+        print("First beat");
         //AudioExternal.instance.source.time = currentTime;
-        print(currentTime);
-        hasStarted = true;
+        //hasStarted = true;
         while(currentTime <= beatTimes[beatTimes.Count-1] || currentTime == 0 )
         {
             //print("Beat");
