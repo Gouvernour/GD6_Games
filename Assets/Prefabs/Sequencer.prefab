@@ -576,11 +576,11 @@ MonoBehaviour:
       One: 1
       Two: 0
       Three: 1
-      Four: 1
+      Four: 0
     - Takt: 1
       One: 1
       Two: 0
-      Three: 1
+      Three: 0
       Four: 0
     - Takt: 2
       One: 1
@@ -596,9 +596,9 @@ MonoBehaviour:
       One: 1
       Two: 0
       Three: 1
-      Four: 1
+      Four: 0
     - Takt: 2
-      One: 0
+      One: 1
       Two: 0
       Three: 0
       Four: 0
@@ -606,34 +606,19 @@ MonoBehaviour:
       One: 1
       Two: 0
       Three: 1
-      Four: 1
+      Four: 0
     - Takt: 3
-      One: 0
+      One: 1
       Two: 0
-      Three: 0
+      Three: 1
       Four: 0
     - Takt: 3
-      One: 0
+      One: 1
       Two: 0
-      Three: 0
+      Three: 1
       Four: 0
     - Takt: 3
       One: 1
-      Two: 1
-      Three: 1
-      Four: 0
-    - Takt: 4
-      One: 1
-      Two: 1
-      Three: 1
-      Four: 0
-    - Takt: 4
-      One: 1
-      Two: 1
-      Three: 1
-      Four: 0
-    - Takt: 4
-      One: 0
       Two: 0
       Three: 0
       Four: 0
@@ -641,13 +626,119 @@ MonoBehaviour:
       One: 1
       Two: 0
       Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 1
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
+      Four: 0
+    - Takt: 4
+      One: 1
+      Two: 0
+      Three: 0
       Four: 0
     id: 21
     S_BPM: 92
-  ID_ORDER: 0a0000000b0000000c0000000d00000003000000040000000500000004000000030000000500000015000000
+  ID_ORDER: 0a0000000b0000000c0000000d0000000300000004000000050000000400000003000000050000001500000003000000040000000500000005000000
   BPM: 93
   RewindSpeed: 2
   Speed: 1
+  hasStarted: 0
   beatTimes: []
   currentTime: 0
   currentBeat: 0
