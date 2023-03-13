@@ -584,6 +584,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[0].Takt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279668763025596704, guid: 720707647d785bf4990bd40a6edca837, type: 3}
+      propertyPath: sequence.Array.data[0].beats.Array.data[0].Three
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4293031440681508561, guid: 720707647d785bf4990bd40a6edca837, type: 3}
       propertyPath: m_Name
       value: Sequencer
