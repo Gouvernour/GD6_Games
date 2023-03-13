@@ -47,13 +47,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequence:
-  - tag: Intro 1
+  - tag: Delayed Start
     beats:
     - Takt: 0
-      One: 1
+      One: 0
       Two: 0
       Three: 0
       Four: 0
+    - Takt: 0
+      One: 0
+      Two: 0
+      Three: 0
+      Four: 0
+    id: -1
+    S_BPM: 114.7
+  - tag: Intro 1
+    beats:
     - Takt: 1
       One: 1
       Two: 0
@@ -734,7 +743,7 @@ MonoBehaviour:
       Four: 0
     id: 21
     S_BPM: 92
-  ID_ORDER: 0a0000000b0000000c0000000d0000000300000004000000050000000400000003000000050000001500000003000000040000000500000005000000
+  ID_ORDER: ffffffff0a0000000b0000000c0000000d0000000300000004000000050000000400000003000000050000001500000003000000040000000500000005000000
   BPM: 93
   RewindSpeed: 2
   Speed: 1

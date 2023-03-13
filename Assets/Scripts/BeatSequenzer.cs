@@ -108,13 +108,13 @@ public class BeatSequenzer : MonoBehaviour
         }
         if(!isRewinding && hasStarted)
         {
-            currentTime += Time.deltaTime;
             if(currentTime > beatTimes[currentBeat] - 0.1f && currentTime < beatTimes[currentBeat] + 0.1f)
             {
                 AudioManager.instance.PlaySound(SoundGroup.Misc);
                 eq.EqualizeEffect();
                 currentBeat++;
             }
+            currentTime += Time.deltaTime;
         }
         if(stoppedRewinding)
         {
