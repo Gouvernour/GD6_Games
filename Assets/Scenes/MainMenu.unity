@@ -527,6 +527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioController
       objectReference: {fileID: 0}
+    - target: {fileID: 5719553672397053223, guid: 43591d12dafc7be4a84944ac02f77870, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5719553672397053241, guid: 43591d12dafc7be4a84944ac02f77870, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -602,7 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e0a54484ba19b4f91e9e0d487ec8eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daSceneName: Main
+  daSceneName: NoahScene2
   timerTime: 2
   pressAny: {fileID: 768233225}
 --- !u!4 &1187982016

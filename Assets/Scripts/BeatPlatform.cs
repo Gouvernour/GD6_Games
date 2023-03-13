@@ -15,6 +15,8 @@ public class BeatPlatform : MonoBehaviour
     float HeightIncrease = 1.4f;
     List<float> currentList = new List<float>();
     List<GameObject> points = new List<GameObject>();
+    bool started = false;
+    bool startedMusic = false;
     void Start()
     {
         //StartCoroutine(PrintData());
@@ -24,7 +26,12 @@ public class BeatPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (started && !startedMusic)
+        {
+            print("Music has started");
+            BeatSequenzer.instance.hasStarted = true;
+            startedMusic = true;
+        }
     }
     bool Effectplaying = false;
 
@@ -32,8 +39,11 @@ public class BeatPlatform : MonoBehaviour
     {
         playerHeight = height;
     }
+
     public void EqualizeEffect()
     {
+        
+
         Effectplaying = true;
         foreach (GameObject point in points)
             Destroy(point);
@@ -66,6 +76,8 @@ public class BeatPlatform : MonoBehaviour
             else
                 sum = d;
             dataSum += sum / data.Length;
+            if (dataSum > 0)
+                started = true;
             if(index%16 == 0)
             {
                 sums.Add(dataSum);

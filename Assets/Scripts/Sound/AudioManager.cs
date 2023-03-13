@@ -285,7 +285,7 @@ public class AudioManager : MonoBehaviour
                         a.source.Stop();
                     }
                     Sound song = sounds.Find(x => x.name == name);
-                    song.source.Play();
+                    //song.source.Play();
                 }
             }
         }

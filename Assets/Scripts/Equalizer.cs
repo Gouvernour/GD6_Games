@@ -15,7 +15,7 @@ public class Equalizer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("moving");
+        //print("moving");
         transform.localScale = new Vector3(target.x, 1, 1);
     }
     public void SetPoint(float Width, float Height)

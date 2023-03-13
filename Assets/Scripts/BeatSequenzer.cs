@@ -59,7 +59,7 @@ public class Sequence
 
 public class BeatSequenzer : MonoBehaviour
 {
-    
+    public static BeatSequenzer instance;
 
     [SerializeField] List<Sequence> sequence;
     [SerializeField] List<int> ID_ORDER;
@@ -75,32 +75,46 @@ public class BeatSequenzer : MonoBehaviour
         SetTiming();
         //Setup beat from sequences
         eq = GameObject.FindGameObjectWithTag("Equalizer").GetComponent<BeatPlatform>();
-        AudioManager.instance.PlayMusic("TwoOfUs");
-        StartCoroutine(BeatNotes());
+        //StartCoroutine(WaitUntilStart());
+        if (instance == null)
+            instance = this;
     }
     bool isRewinding = false;
     bool stoppedRewinding = false;
+    bool Shouldstart = false;
+    public bool hasStarted = false;
     float timeRewind = 0;
     float currentSpeed = 1;
     int totalBeats = 0;
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.P))
+        
+
+        if (Input.GetKeyUp(KeyCode.P))
         {
-            if(isRewinding)
+            isRewinding = !isRewinding;
+            if(!isRewinding)
             {
-                isRewinding = false;
                 stoppedRewinding = true;
                 currentSpeed = 1;
                 AudioManager.instance.SetMusicPitch(currentSpeed, "TwoOfUs");
             }
             else
             {
-                isRewinding = true;
                 StopAllCoroutines();
                 currentSpeed = -RewindSpeed;
                 AudioManager.instance.SetMusicPitch(currentSpeed, "TwoOfUs");
             }    
+        }
+        if(!isRewinding && hasStarted)
+        {
+            if(currentTime > beatTimes[currentBeat] - 0.1f && currentTime < beatTimes[currentBeat] + 0.1f)
+            {
+                AudioManager.instance.PlaySound(SoundGroup.Misc);
+                eq.EqualizeEffect();
+                currentBeat++;
+            }
+            currentTime += Time.deltaTime;
         }
         if(stoppedRewinding)
         {
@@ -111,6 +125,8 @@ public class BeatSequenzer : MonoBehaviour
         {
             timeRewind += Time.deltaTime * RewindSpeed;
         }
+        while (currentTime > beatTimes[currentBeat])
+            currentBeat++;
     }
 
     void Rewind(float timeRewinded)
@@ -137,7 +153,7 @@ public class BeatSequenzer : MonoBehaviour
         StartCoroutine(BeatNotes());
     }
 
-    [SerializeField] List<float> beatTimes = new List<float>();
+    [SerializeField] public List<float> beatTimes = new List<float>();
     void SetTiming()
     {
         float time = 0f;
@@ -178,22 +194,36 @@ public class BeatSequenzer : MonoBehaviour
                 }
             }
         }
+        StartCoroutine(WaitUntilStart());
+    }
+
+    IEnumerator WaitUntilStart()
+    {
+        yield return null;
+        
+        print("PlayingSong");
+        AudioManager.instance.PlayMusic("TwoOfUs");
+        //StartCoroutine(BeatNotes());
     }
 
     public float currentTime = 0;
     public int currentBeat = 0;
-    IEnumerator BeatNotes()
+    public IEnumerator BeatNotes()
     {
-        
-        while(currentTime <= beatTimes[beatTimes.Count-1])
+        print("First beat");
+        //AudioExternal.instance.source.time = currentTime;
+        //hasStarted = true;
+        while(currentTime <= beatTimes[beatTimes.Count-1] || currentTime == 0 )
         {
-            yield return new WaitForSeconds(beatTimes[currentBeat] - currentTime);
-            currentTime = beatTimes[currentBeat];
-            currentBeat++;
-            AudioManager.instance.PlaySound(SoundGroup.Misc);
-            eq.EqualizeEffect();
+            //print("Beat");
+            //currentTime = beatTimes[currentBeat];
+            //currentBeat++;
+            //AudioManager.instance.PlaySound(SoundGroup.Misc);
+            //eq.EqualizeEffect();
             if (currentBeat >= beatTimes.Count)
                 break;
+            yield return new WaitForSeconds(beatTimes[currentBeat] - currentTime);
+            
         }
         yield return null;
     }
