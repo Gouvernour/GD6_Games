@@ -10084,6 +10084,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1079795043163006436, guid: 9deeed5d783583a40956a41ee13e1a50, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1908629563}
     - target: {fileID: 2476496699540411184, guid: 9deeed5d783583a40956a41ee13e1a50, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.4
@@ -10314,5 +10318,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: toskr
       objectReference: {fileID: 0}
+    - target: {fileID: 6588123408915469294, guid: 4717bd62a765d5a4a9b3243cab4e94dd, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 554812625}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4717bd62a765d5a4a9b3243cab4e94dd, type: 3}
