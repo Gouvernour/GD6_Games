@@ -88,6 +88,8 @@ public class BeatSequenzer : MonoBehaviour
     float currentSpeed = 1;
     int totalBeats = 0;
     bool Jumping = false;
+    bool RatJumping = false;
+    bool ToskrJumping = false;
     private void Update()
     {
         if(WaitingForPlayer)
@@ -103,6 +105,7 @@ public class BeatSequenzer : MonoBehaviour
         if(currentBeat == beatTimes.Count)
         {
             //Win
+            AudioManager.instance.StopMusic();
             return;
         }
 
@@ -124,16 +127,23 @@ public class BeatSequenzer : MonoBehaviour
         }
         if(!isRewinding && hasStarted)
         {
-            if (currentTime > beatTimes[currentBeat] - 0.2f && currentTime < beatTimes[currentBeat] - 0.1f && !Jumping)
+            if (currentTime > beatTimes[currentBeat] - 0.2f && currentTime < beatTimes[currentBeat] - 0.1f)
             {
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+
+                }
                 //RatMovement.instance1.Jump();
                 //RatMovement.instance2.Jump();
-                TreeClimbCamera.instance.SetNewBeat();
+                //AudioManager.instance.PlaySound(SoundGroup.Misc);
                 Jumping = true;
             }
             if (currentTime > beatTimes[currentBeat] - 0.1f && currentTime < beatTimes[currentBeat] + 0.1f)
             {
-                AudioManager.instance.PlaySound(SoundGroup.Misc);
+                TreeClimbCamera.instance.SetNewBeat();
+                if (Jumping)
+                    print("Jumped");
+                //AudioManager.instance.PlaySound(SoundGroup.Misc);
                 eq.EqualizeEffect();
                 currentBeat++;
                 Jumping = false;
