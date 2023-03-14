@@ -8,22 +8,46 @@ public class TreeClimbCamera : MonoBehaviour
     [SerializeField] Camera m_Camera;
     [SerializeField] List<float> beats = new List<float>();
     [SerializeField] List<float> BPMs = new List<float>();
+    [SerializeField] Vector3 StartPosition = new Vector3();
     float HeightIncrease = 1.4f;
-    float CurrentHeight = -3;
+    float CurrentHeight = 0;
+    float Height = -1.95f;
     float Delay = 57.35f;
-
+    [SerializeField] GameObject tree;
+    bool showingTree = false;
+    bool started = false;
     [SerializeField] GameObject Acorn;
     // Start is called before the first frame update
     void Start()
     {
         m_Camera = Camera.main;
         instance = this;
+        showingTree = false;
+        started = false;
     }
 
+    private void Update()
+    {
+        if (Input.anyKey && !started)
+        {
+            started = true;
+            showingTree = true;
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(BeatSequenzer.instance.beatTimes != null && beats.Count == 0)
+        
+        if(started && showingTree)
+        {
+            m_Camera.transform.position = Vector3.MoveTowards(transform.position, StartPosition, 30 * Time.deltaTime);
+        }
+        if(m_Camera.transform.position == StartPosition)
+        {
+            showingTree = false;
+            BeatSequenzer.instance.WatchingIntro = false;
+        }
+        if(BeatSequenzer.instance.beatTimes.Count != 0 && beats.Count == 0)
         {
             foreach (float time in BeatSequenzer.instance.beatTimes)
                 beats.Add(time);
@@ -33,10 +57,10 @@ public class TreeClimbCamera : MonoBehaviour
             {
                 beats[i] -= 0.3f;
                 timeDiff = beats[i] - currentTime;
-                print(timeDiff);
+                //print(timeDiff);
                 currentTime = beats[i];
 
-                GameObject corn = Instantiate(Acorn, transform.position + new Vector3(0, beats[i] * 3 + (i*HeightIncrease) + HeightIncrease, 0), Quaternion.identity);
+                GameObject corn = Instantiate(Acorn, transform.position + new Vector3(0, beats[i] * 5 + (i*HeightIncrease) + HeightIncrease + Height, 0), Quaternion.identity);
                 corn.transform.position = new Vector3(corn.transform.position.x, corn.transform.position.y, 0);
             }
             float CurrTime = 0 - beats[0];
@@ -46,7 +70,13 @@ public class TreeClimbCamera : MonoBehaviour
                 BPMs.Add((60 / (beats[i+1] - CurrTime)));
             }
         }
-        m_Camera.transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, CurrentHeight, -10), 5 * Time.deltaTime);
+        if(beats.Count > 0)
+        {
+            m_Camera.transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, CurrentHeight, -10), 5 * Time.deltaTime);
+            //tree.transform.position = Vector3.MoveTowards(tree.transform.position, new Vector3(0, CurrentHeight, 0), 5 * Time.deltaTime);
+
+        }
+        //tree.transform.localScale = new Vector3(tree.transform.localScale.x, tree.transform.localScale.y + (5 * Time.deltaTime), tree.transform.localScale.z);
     }
 
     public void SetNewBeat()
