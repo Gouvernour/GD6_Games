@@ -345,6 +345,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1908629558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2476496699540411185, guid: 9deeed5d783583a40956a41ee13e1a50, type: 3}
+  m_PrefabInstance: {fileID: 2476496701346976755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1908629563
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908629558}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ed9d2e5611b20e49b4ffce4933465b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1977595083
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +600,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2476496699540411190, guid: 9deeed5d783583a40956a41ee13e1a50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b9d9942b30d267f47b2fecd760afa9d4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9deeed5d783583a40956a41ee13e1a50, type: 3}
 --- !u!1001 &4293031441889823480
@@ -641,6 +670,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4830552985123245696, guid: 4717bd62a765d5a4a9b3243cab4e94dd, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830552985123245696, guid: 4717bd62a765d5a4a9b3243cab4e94dd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 360fecf140bd892419ffa22c0a1706a9, type: 3}
     - target: {fileID: 4830552985123245697, guid: 4717bd62a765d5a4a9b3243cab4e94dd, type: 3}
       propertyPath: m_RootOrder
       value: 6
