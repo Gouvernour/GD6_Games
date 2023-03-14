@@ -22,10 +22,10 @@ public class Equalizer : MonoBehaviour
     {
         y = Height;
         x = Width;
-        if (Width < 3)
-            x = 3;
-        if(Width > 10)
-            x = 10;
+        if (Width < 4)
+            x = 4;
+        if(Width > 14)
+            x = 14;
         target = new Vector3(x, y);
     }
 }

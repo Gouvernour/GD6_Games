@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEditor;
 
 [System.Serializable]
@@ -72,7 +73,7 @@ public class BeatSequenzer : MonoBehaviour
     private void Start()
     {
         Speed = 60 / BPM;
-        SetTiming();
+        
         //Setup beat from sequences
         eq = GameObject.FindGameObjectWithTag("Equalizer").GetComponent<BeatPlatform>();
         //StartCoroutine(WaitUntilStart());
@@ -86,9 +87,24 @@ public class BeatSequenzer : MonoBehaviour
     float timeRewind = 0;
     float currentSpeed = 1;
     int totalBeats = 0;
+    bool Jumping = false;
     private void Update()
     {
-        
+        if(WaitingForPlayer)
+        {
+            if(Input.GetKeyUp(KeyCode.Space))
+            {
+                WaitingForPlayer = false;
+                SetTiming();
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.R))
+            SceneManager.LoadScene(0);
+        if(currentBeat == beatTimes.Count)
+        {
+            //Win
+            return;
+        }
 
         if (Input.GetKeyUp(KeyCode.P))
         {
@@ -108,11 +124,19 @@ public class BeatSequenzer : MonoBehaviour
         }
         if(!isRewinding && hasStarted)
         {
-            if(currentTime > beatTimes[currentBeat] - 0.1f && currentTime < beatTimes[currentBeat] + 0.1f)
+            if (currentTime > beatTimes[currentBeat] - 0.2f && currentTime < beatTimes[currentBeat] - 0.1f && !Jumping)
+            {
+                //RatMovement.instance1.Jump();
+                //RatMovement.instance2.Jump();
+                TreeClimbCamera.instance.SetNewBeat();
+                Jumping = true;
+            }
+            if (currentTime > beatTimes[currentBeat] - 0.1f && currentTime < beatTimes[currentBeat] + 0.1f)
             {
                 AudioManager.instance.PlaySound(SoundGroup.Misc);
                 eq.EqualizeEffect();
                 currentBeat++;
+                Jumping = false;
             }
             currentTime += Time.deltaTime;
         }
@@ -125,7 +149,12 @@ public class BeatSequenzer : MonoBehaviour
         {
             timeRewind += Time.deltaTime * RewindSpeed;
         }
-        while (currentTime > beatTimes[currentBeat])
+        if(currentBeat == beatTimes.Count - 1)
+        {
+            currentBeat++;
+            return;
+        }
+        while (currentTime > beatTimes[currentBeat] && currentBeat != beatTimes.Count - 1)
             currentBeat++;
     }
 
@@ -196,10 +225,14 @@ public class BeatSequenzer : MonoBehaviour
         }
         StartCoroutine(WaitUntilStart());
     }
-
+    bool WaitingForPlayer = true;
     IEnumerator WaitUntilStart()
     {
-        yield return null;
+        while(WaitingForPlayer)
+        {
+
+            yield return null;
+        }
         
         print("PlayingSong");
         AudioManager.instance.PlayMusic("TwoOfUs");

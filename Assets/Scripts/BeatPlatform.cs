@@ -43,10 +43,10 @@ public class BeatPlatform : MonoBehaviour
     public void EqualizeEffect()
     {
         
-
         Effectplaying = true;
         foreach (GameObject point in points)
             Destroy(point);
+        int index = 0;
         currentList = sums;
         float height = playerHeight;
         foreach (float pos in currentList)
@@ -55,7 +55,18 @@ public class BeatPlatform : MonoBehaviour
             newPoint.GetComponent<Equalizer>().SetPoint(pos * multiplier, height);
             points.Add(newPoint);
             height += HeightIncrease;
+            if(index == 0)
+            {
+                newPoint.GetComponent<Collider2D>().isTrigger = false;
+                points.Remove(newPoint);
+                playerHeight += HeightIncrease;
+            }else
+            {
+                newPoint.SetActive(false);
+            }
+            index++;
         }
+        
         Effectplaying = false;
     }
 
