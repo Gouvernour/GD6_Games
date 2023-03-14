@@ -90,19 +90,31 @@ public class BeatSequenzer : MonoBehaviour
     bool Jumping = false;
     bool RatJumping = false;
     bool ToskrJumping = false;
+    bool AIPlaying = false;
+    public bool WatchingIntro = true;
     private void Update()
     {
-        if(WaitingForPlayer)
+        if(WaitingForPlayer && !WatchingIntro)
         {
             if(Input.GetKeyUp(KeyCode.Space))
             {
-                WaitingForPlayer = false;
                 SetTiming();
+                WaitingForPlayer = false;
+                return;
             }
         }
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            AIPlaying = !AIPlaying;
+        }
         if (Input.GetKeyUp(KeyCode.R))
+        {
             SceneManager.LoadScene(0);
-        if(currentBeat == beatTimes.Count)
+            hasStarted = false;
+        }
+        if (!hasStarted)
+            return;
+        if(currentBeat == beatTimes.Count && hasStarted)
         {
             //Win
             AudioManager.instance.StopMusic();
@@ -127,26 +139,43 @@ public class BeatSequenzer : MonoBehaviour
         }
         if(!isRewinding && hasStarted)
         {
-            if (currentTime > beatTimes[currentBeat] - 0.2f && currentTime < beatTimes[currentBeat] - 0.1f)
+            if (currentTime > beatTimes[currentBeat] - .2f && currentTime < beatTimes[currentBeat] - 0.1f)
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-
+                    ToskrJumping = true;
+                    RatMovement.instance2.anim.SetBool("jump", true);
                 }
-                //RatMovement.instance1.Jump();
-                //RatMovement.instance2.Jump();
+                if(Input.GetKeyDown(KeyCode.W))
+                {
+                    RatMovement.instance1.anim.SetBool("jump", true);
+                    RatJumping = true;
+                }
+                if (!Jumping && AIPlaying)
+                {
+                    RatMovement.instance1.Jump();
+                    RatMovement.instance1.anim.SetBool("jump", true);
+                    RatMovement.instance2.Jump();
+                    RatMovement.instance2.anim.SetBool("jump", true);
+                }
                 //AudioManager.instance.PlaySound(SoundGroup.Misc);
                 Jumping = true;
             }
             if (currentTime > beatTimes[currentBeat] - 0.1f && currentTime < beatTimes[currentBeat] + 0.1f)
             {
                 TreeClimbCamera.instance.SetNewBeat();
-                if (Jumping)
+                if(RatJumping && ToskrJumping)
                     print("Jumped");
+                else
+                    print("Jumped missed");
                 //AudioManager.instance.PlaySound(SoundGroup.Misc);
                 eq.EqualizeEffect();
                 currentBeat++;
                 Jumping = false;
+                RatJumping=false;
+                ToskrJumping=false;
+                RatMovement.instance1.anim.SetBool("jump", false);
+                RatMovement.instance2.anim.SetBool("jump", false);
             }
             currentTime += Time.deltaTime;
         }

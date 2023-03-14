@@ -9,12 +9,14 @@ public class RatMovement : MonoBehaviour
     [SerializeField] KeyCode UP;
     [SerializeField] Rigidbody2D Body;
     [SerializeField] float Force = 100;
+    [SerializeField] public Animator anim;
+    public Vector3 JumpOrigin = Vector3.zero;
 
     private void Start()
     {
-        if (instance1 == null)
+        if (instance1 == null && UP == KeyCode.W)
             instance1 = this;
-        else if (instance2 == null)
+        else if (instance2 == null && UP == KeyCode.UpArrow)
             instance2 = this;
     }
 
@@ -23,7 +25,11 @@ public class RatMovement : MonoBehaviour
         if (Input.GetKeyDown(UP))
         {
             Jump();
+            anim.SetBool("jump", true);
+            JumpOrigin = Body.transform.position;
         }
+        //if(Body.transform.position.y == JumpOrigin.y)
+        //    anim.SetBool("jump", false);
     }
 
     public void Jump()

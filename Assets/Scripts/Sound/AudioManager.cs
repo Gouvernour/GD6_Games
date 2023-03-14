@@ -370,7 +370,7 @@ public class AudioManager : MonoBehaviour
                     foreach (Sound a in sounds)
                     {
                         a.source.Stop();
-                        Debug.Log("Sound Stopped");
+                        //Debug.Log("Sound Stopped");
                     }
                 }
             }
