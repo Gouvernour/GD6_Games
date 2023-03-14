@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEditor;
 
 [System.Serializable]
@@ -72,7 +73,7 @@ public class BeatSequenzer : MonoBehaviour
     private void Start()
     {
         Speed = 60 / BPM;
-        SetTiming();
+        
         //Setup beat from sequences
         eq = GameObject.FindGameObjectWithTag("Equalizer").GetComponent<BeatPlatform>();
         //StartCoroutine(WaitUntilStart());
@@ -89,6 +90,16 @@ public class BeatSequenzer : MonoBehaviour
     bool Jumping = false;
     private void Update()
     {
+        if(WaitingForPlayer)
+        {
+            if(Input.GetKeyUp(KeyCode.Space))
+            {
+                WaitingForPlayer = false;
+                SetTiming();
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.R))
+            SceneManager.LoadScene(0);
         if(currentBeat == beatTimes.Count)
         {
             //Win
@@ -115,8 +126,8 @@ public class BeatSequenzer : MonoBehaviour
         {
             if (currentTime > beatTimes[currentBeat] - 0.2f && currentTime < beatTimes[currentBeat] - 0.1f && !Jumping)
             {
-                RatMovement.instance1.Jump();
-                RatMovement.instance2.Jump();
+                //RatMovement.instance1.Jump();
+                //RatMovement.instance2.Jump();
                 TreeClimbCamera.instance.SetNewBeat();
                 Jumping = true;
             }
@@ -214,10 +225,14 @@ public class BeatSequenzer : MonoBehaviour
         }
         StartCoroutine(WaitUntilStart());
     }
-
+    bool WaitingForPlayer = true;
     IEnumerator WaitUntilStart()
     {
-        yield return null;
+        while(WaitingForPlayer)
+        {
+
+            yield return null;
+        }
         
         print("PlayingSong");
         AudioManager.instance.PlayMusic("TwoOfUs");

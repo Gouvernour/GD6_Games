@@ -36,7 +36,7 @@ public class TreeClimbCamera : MonoBehaviour
                 print(timeDiff);
                 currentTime = beats[i];
 
-                GameObject corn = Instantiate(Acorn, transform.position + new Vector3(0, beats[i] + 5 + (i*HeightIncrease), 0), Quaternion.identity);
+                GameObject corn = Instantiate(Acorn, transform.position + new Vector3(0, beats[i] * 3 + (i*HeightIncrease) + HeightIncrease, 0), Quaternion.identity);
                 corn.transform.position = new Vector3(corn.transform.position.x, corn.transform.position.y, 0);
             }
             float CurrTime = 0 - beats[0];
