@@ -89,7 +89,11 @@ public class BeatSequenzer : MonoBehaviour
     bool Jumping = false;
     private void Update()
     {
-        
+        if(currentBeat == beatTimes.Count)
+        {
+            //Win
+            return;
+        }
 
         if (Input.GetKeyUp(KeyCode.P))
         {
@@ -109,7 +113,7 @@ public class BeatSequenzer : MonoBehaviour
         }
         if(!isRewinding && hasStarted)
         {
-            if (currentTime > beatTimes[currentBeat] - 0.3f && currentTime < beatTimes[currentBeat] - 0.1f && !Jumping)
+            if (currentTime > beatTimes[currentBeat] - 0.2f && currentTime < beatTimes[currentBeat] - 0.1f && !Jumping)
             {
                 RatMovement.instance1.Jump();
                 RatMovement.instance2.Jump();
@@ -134,7 +138,12 @@ public class BeatSequenzer : MonoBehaviour
         {
             timeRewind += Time.deltaTime * RewindSpeed;
         }
-        while (currentTime > beatTimes[currentBeat])
+        if(currentBeat == beatTimes.Count - 1)
+        {
+            currentBeat++;
+            return;
+        }
+        while (currentTime > beatTimes[currentBeat] && currentBeat != beatTimes.Count - 1)
             currentBeat++;
     }
 

@@ -11,6 +11,8 @@ public class TreeClimbCamera : MonoBehaviour
     float HeightIncrease = 1.4f;
     float CurrentHeight = -3;
     float Delay = 57.35f;
+
+    [SerializeField] GameObject Acorn;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,16 +27,23 @@ public class TreeClimbCamera : MonoBehaviour
         {
             foreach (float time in BeatSequenzer.instance.beatTimes)
                 beats.Add(time);
-
+            float timeDiff = 0;
+            float currentTime = 0;
             for (int i = 0; i < beats.Count; i++)
             {
                 beats[i] -= 0.3f;
+                timeDiff = beats[i] - currentTime;
+                print(timeDiff);
+                currentTime = beats[i];
+
+                GameObject corn = Instantiate(Acorn, transform.position + new Vector3(0, beats[i] + 5 + (i*HeightIncrease), 0), Quaternion.identity);
+                corn.transform.position = new Vector3(corn.transform.position.x, corn.transform.position.y, 0);
             }
-            float CurrTime = beats[0];
-            foreach (float beat in beats)
+            float CurrTime = 0 - beats[0];
+            for (int i = 0; i < beats.Count-1; i++)
             {
-                CurrTime += beat;
-                BPMs.Add((60 / (beat- CurrTime)) *4);
+                CurrTime = beats[i];
+                BPMs.Add((60 / (beats[i+1] - CurrTime)));
             }
         }
         m_Camera.transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, CurrentHeight, -10), 5 * Time.deltaTime);
